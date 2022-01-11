@@ -11,21 +11,23 @@
         <title>Login</title>
     </head>
     <body>
-    <form action="./dashboard.html">
-        <div class="container">
-            <div class="form-group">
-                <label for="uname">Username</label>
-                <input class="form-control" type="text" placeholder="Enter Username or Email" id="uname" name="uname" required>
-            </div>
+    <div class="position-absolute top-50 start-50 translate-middle border rounded p-2">
+        <form action="./dashboard.html">
+            <div class="container">
+                <div class="form-group">
+                    <label for="uname">Username</label>
+                    <input class="form-control" type="text" placeholder="Enter Username or Email" id="uname" name="uname" required>
+                </div>
 
-            <div class="form-group">
-                <label for="psw">Password</label>
-                <input class="form-control" type="password" placeholder="Enter Password" id="psw" name="psw" required>
-            </div>
+                <div class="form-group">
+                    <label for="psw">Password</label>
+                    <input class="form-control" type="password" placeholder="Enter Password" id="psw" name="psw" required>
+                </div>
 
-            <button class="btn btn-primary" type="submit" onclick="return doLogin();">Login</button>
-        </div>
-    </form>
+                <button class="btn btn-primary mt-2" type="submit" onclick="return doLogin();">Login</button>
+            </div>
+        </form>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>
