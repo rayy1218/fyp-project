@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="ticket-purchase.js"></script>
+    <title>Main Page</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="flex-wrap d-flex row">
+                <div class="header-left flex-wrap d-flex col-sm">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="account-dropdown">
+                            <li><a class="dropdown-item" href="./register.html">Register</a></li>
+                            <li><a class="dropdown-item" href="./login.html">Login</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn">
+                        Post
+                    </button>
+                </div>
+                <div class="header-right col-sm text-end">
+                    <button class="btn">
+                        Other
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr class="m-0" />
+    </header>
+
+    <div class="container mt-3 content">
+        <form>
+            <div class="row m-2">
+                <div class="col-2 d-flex align-items-center">
+                    <label for="cinema">Cinema</label>
+                </div>
+                <div class="col">
+                    <select class="form-select" aria-label="Select Cinema" id="cinema" name="cinema">
+                        <option value="default" selected>Select Cinema</option>
+                        <option value="1">Cinema 1</option>
+                        <option value="2">Cinema 2</option>
+                        <option value="3">Cinema 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row m-2 date-radios invisible">
+                <div class="col-2">
+                    <label for="date-radio-group">Date</label>
+                </div>
+                <div class="col-10" id="date-radio-group">
+                    <div class="form-check">
+                        <input class="form-check-input date-radio" type="radio" name="date" id="date-radio0" value="" />
+                        <label class="form-check-label" for="date-radio0">1/11</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-2 time-radios invisible">
+                <div class="col-2">
+                    <label for="time-radio-group">Time</label>
+                </div>
+                <div class="col-10" id="time-radio-group">
+
+                </div>
+            </div>
+
+            <div class="row m-2 seat-checks invisible">
+                <div class="col-2">
+                    <label for="seat-check-group">Seat</label>
+                </div>
+                <div class="col-10">
+                    <div id="seat-check-group">
+                        <table class="seat-display-table">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-2 ticket-type-input invisible">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="adult-num">Adult</label>
+                        <input class="form-control" id="adult-num" name="adult-num" type="number" value="0" readonly/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="child-elder-num">Child/Elder</label>
+                        <input class="form-control" id="child-elder-num" name="child-elder-num" type="number" value="0" min="0" max="0"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="student-num">Student</label>
+                        <input class="form-control" id="student-num" name="student-num" type="number" value="0" min="0" max="0"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary invisible">
+            </div>
+
+            <div class="submit invisible">
+                <a href="dashboard.html" class="btn btn-primary">Proceed</a>
+            </div>
+        </form>
+    </div>
+
+    <footer></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
