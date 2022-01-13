@@ -10,34 +10,34 @@
     <title>Main Page</title>
 </head>
 <body>
-<header>
-    <div class="container">
-        <div class="flex-wrap d-flex row">
-            <div class="header-left flex-wrap d-flex col-sm">
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Account
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="account-dropdown">
-                        <li><a class="dropdown-item" href="register.html">Register</a></li>
-                        <li><a class="dropdown-item" href="login.html">Login</a></li>
-                    </ul>
+    <header>
+        <div class="container">
+            <div class="flex-wrap d-flex row">
+                <div class="header-left flex-wrap d-flex col-sm">
+                    <a href="../index.html" class="btn">Home</a>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="account-dropdown">
+                            <li><a class="dropdown-item" href="./register.html">Register</a></li>
+                            <li><a class="dropdown-item" href="./login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="./dashboard.html">Dashboard(prototype use)</a></li>
+                        </ul>
+                    </div>
+                    <a href="./movie-list.html" class="btn">All Movie</a>
                 </div>
-                <button class="btn">
-                    Post
-                </button>
-            </div>
-            <div class="header-right col-sm text-end">
-                <button class="btn">
-                    Other
-                </button>
+                <div class="header-right col-sm text-end">
+                    <button class="btn">
+                        Other
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <hr class="m-0" />
-</header>
+        <hr class="m-0" />
+    </header>
 
-<div class="container mt-3 content">
+    <div class="container mt-3 content">
     <div class="row mb-2">
         <div class="col-auto d-flex align-items-center"><button class="btn btn-primary">Back</button></div>
         <div class="col fs-3 fw-bold">Movie Name</div>
