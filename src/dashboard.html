@@ -12,8 +12,8 @@
 <body>
     <header>
         <div class="container">
-            <div class="flex-wrap d-flex row">
-                <div class="header-left flex-wrap d-flex col-sm">
+            <div class="row">
+                <div class="header-left col-sm d-flex">
                     <a href="../index.html" class="btn">Home</a>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -22,12 +22,20 @@
                         <ul class="dropdown-menu" aria-labelledby="account-dropdown">
                             <li><a class="dropdown-item" href="./register.html">Register</a></li>
                             <li><a class="dropdown-item" href="./login.html">Login</a></li>
-                            <li><a class="dropdown-item" href="./dashboard.html">Dashboard(prototype use)</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="prototype-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Prototype Use Navigation
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="prototype-dropdown">
+                            <li><a class="dropdown-item" href="./dashboard.html">User Dashboard</a></li>
+                            <li><a class="dropdown-item" href="./dashboard-employee.html">Employee Dashboard</a></li>
                         </ul>
                     </div>
                     <a href="./movie-list.html" class="btn">All Movie</a>
                 </div>
-                <div class="header-right col-sm text-end">
+                <div class="header-right col-sm-auto">
                     <button class="btn">
                         Other
                     </button>
@@ -112,7 +120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item active">
+                        <div class="carousel-item">
                             <div class="row p-2">
                                 <div class="col-lg-4 mb-2">
                                     <div class="card">
@@ -152,7 +160,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item active">
+                        <div class="carousel-item">
                             <div class="row p-2">
                                 <div class="col-lg-4 mb-2">
                                     <div class="card">
@@ -193,11 +201,11 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#movie-today-carousel" data-bs-slide="prev" style="width: 1%">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#watched-history-carousel" data-bs-slide="prev" style="width: 1%">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#movie-today-carousel" data-bs-slide="next" style="width: 1%">
+                    <button class="carousel-control-next" type="button" data-bs-target="#watched-history-carousel" data-bs-slide="next" style="width: 1%">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
@@ -247,7 +255,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item active">
+                        <div class="carousel-item">
                             <div class="row p-2">
                                 <div class="col-lg-4 mb-2">
                                     <div class="card">
@@ -287,7 +295,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item active">
+                        <div class="carousel-item">
                             <div class="row p-2">
                                 <div class="col-lg-4 mb-2">
                                     <div class="card">
@@ -328,11 +336,11 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#movie-today-carousel" data-bs-slide="prev" style="width: 1%">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#purchased-ticket-carousel" data-bs-slide="prev" style="width: 1%">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#movie-today-carousel" data-bs-slide="next" style="width: 1%">
+                    <button class="carousel-control-next" type="button" data-bs-target="purchased-ticket-carousel" data-bs-slide="next" style="width: 1%">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>

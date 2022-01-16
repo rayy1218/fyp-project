@@ -10,32 +10,40 @@
   <title>Main Page</title>
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="flex-wrap d-flex row">
-      <div class="header-left flex-wrap d-flex col-sm">
-        <a href="../index.html" class="btn">Home</a>
-        <div class="dropdown">
-          <button class="btn dropdown-toggle" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="account-dropdown">
-            <li><a class="dropdown-item" href="./register.html">Register</a></li>
-            <li><a class="dropdown-item" href="./login.html">Login</a></li>
-            <li><a class="dropdown-item" href="./dashboard.html">Dashboard(prototype use)</a></li>
-          </ul>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="header-left col-sm d-flex">
+          <a href="../index.html" class="btn">Home</a>
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="account-dropdown">
+              <li><a class="dropdown-item" href="./register.html">Register</a></li>
+              <li><a class="dropdown-item" href="./login.html">Login</a></li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="prototype-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Prototype Use Navigation
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="prototype-dropdown">
+              <li><a class="dropdown-item" href="./dashboard.html">User Dashboard</a></li>
+              <li><a class="dropdown-item" href="./dashboard-employee.html">Employee Dashboard</a></li>
+            </ul>
+          </div>
+          <a href="./movie-list.html" class="btn">All Movie</a>
         </div>
-        <a href="./movie-list.html" class="btn">All Movie</a>
-      </div>
-      <div class="header-right col-sm text-end">
-        <button class="btn">
-          Other
-        </button>
+        <div class="header-right col-sm-auto">
+          <button class="btn">
+            Other
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <hr class="m-0" />
-</header>
+    <hr class="m-0" />
+  </header>
 
 <div class="container mt-3 content">
   <p class="fs-3 fw-bold">Ticket Receipt</p>
