@@ -303,7 +303,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -317,7 +317,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -331,7 +331,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -345,7 +345,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -359,7 +359,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -373,7 +373,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -387,7 +387,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -401,7 +401,7 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
@@ -415,11 +415,41 @@
               <div class="col-auto">
                 <button class="btn btn-primary w-100">Edit</button><br />
                 <button class="btn btn-primary w-100 mt-2">Delete</button><br />
-                <button class="btn btn-primary w-100 mt-2">Add to Schedule</button>
+                <button class="btn btn-primary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schedule-add-movie-modal">Add to Schedule</button>
               </div>
             </div>
           </li>
         </ol>
+
+        <div class="modal fade" id="schedule-add-movie-modal" tabindex="1" aria-labelledby="schedule-add-movie-modal-title" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="schedule-add-movie-modal-title">Add Movie</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="schedule-add-movie-form" action="" method="get">
+                  <div class="mb-3">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="time">Time</label>
+                    <input type="time" name="time" id="time" class="form-control" />
+                  </div>
+                  <div>
+                    <input type="hidden" name="action" value="add-movie-to-schedule" readonly />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="schedule-add-movie-form">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="tab-pane fade" id="cinema-theater-tab" role="tabpanel" aria-labelledby="cinema-theater-nav-button">
