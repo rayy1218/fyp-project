@@ -13,7 +13,6 @@ function toggleSeat(id) {
     resetTicketTypeInput();
     adjustTicketTypeInput();
 
-
     const submit = $("div.submit");
     if (seat_selected.length > 0) {
         submit.removeClass("invisible");
@@ -54,6 +53,9 @@ function generateDateInput() {
     $("input.date-radio").change(() => {
         generateTimeInput();
         $("div.time-radios").removeClass("invisible");
+        $("div.seat-checks").addClass("invisible");
+        $("div.ticket-type-input").addClass("invisible");
+        $("div.summary").addClass("invisible");
     })
 }
 
@@ -84,6 +86,8 @@ function generateTimeInput() {
         $("div.seat-checks").removeClass("invisible");
         $("div.ticket-type-input").removeClass("invisible");
         $("div.summary").removeClass("invisible");
+        seat_selected = [];
+        adjustTicketTypeInput();
     })
 }
 
@@ -123,6 +127,10 @@ $(function() {
         if ($("select#cinema").val() === "default") {return;}
         generateDateInput();
         $("div.date-radios").removeClass("invisible");
+        $("div.time-radios").addClass("invisible");
+        $("div.seat-checks").addClass("invisible");
+        $("div.ticket-type-input").addClass("invisible");
+        $("div.summary").addClass("invisible");
     });
 
     $("input#child-elder-num").change(() => {
