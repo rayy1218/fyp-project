@@ -27,6 +27,8 @@
             function print(result) {
                 let append = "";
                 for (let row of result) {
+                    //For example at Movie List
+                    //movie_thumbnail, movie_title, movie_id should return to the script from php
                     append += `
                         <div class="card m-2">
                           <img src="${row.movie_thumbnail}" class="card-img-top" alt="movie-thumbnail"/>
@@ -48,8 +50,8 @@
         getMovieList();
     });
     ```
-    Inside the $.ajax function, an URL is there. When the site was loaded/ready, the script will send a request to the php file
-
+    Inside the $.ajax function, an URL is there. When the site was loaded/ready, the script will send a request to the php file.
+    Also check about the print function, where it should have all column that should be return from php.
 
 2. A php file should be created according to the URL above. The php should echo/print the data in JSON 
    Example: [movie-list.php](https://github.com/rayy1218/fyp-project/blob/main/src/api/movie-list.php)
@@ -72,7 +74,7 @@
     exit();
     }
     
-    # Query the db and get the result
+    # Query the db based on the requirement and get the result
     $query_result = mysqli_query($conn, "SELECT movie_id, movie_title, movie_thumbnail FROM movie");
     $rows = array();
    
