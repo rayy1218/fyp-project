@@ -53,19 +53,17 @@
     Inside the $.ajax function, an URL is there. When the site was loaded/ready, the script will send a request to the php file.
     Also check about the print function, where it should have all column that should be return from php.
 
+
 2. A php file should be created according to the URL above. The php should echo/print the data in JSON 
    Example: [movie-list.php](https://github.com/rayy1218/fyp-project/blob/main/src/api/movie-list.php)
-    ```php
-    <?php
-    include "connection.php";
     
+    ```php
     # connection.php
     <?php
     $host="localhost";
     $user="root";
     $password="";
     $dbname="movie-site";
-    
     $conn = mysqli_connect($host,$user,$password,$dbname);
     
     // Check connection
@@ -73,6 +71,13 @@
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
     exit();
     }
+    ```
+    ```php
+    #movie-list.php
+    <?php
+    include "connection.php";
+    
+    
     
     # Query the db based on the requirement and get the result
     $query_result = mysqli_query($conn, "SELECT movie_id, movie_title, movie_thumbnail FROM movie");
