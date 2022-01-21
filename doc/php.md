@@ -53,7 +53,7 @@
 
 2. A php file should be created according to the URL above. The php should echo/print the data in JSON 
    Example: [movie-list.php](https://github.com/rayy1218/fyp-project/blob/main/src/api/movie-list.php)
-    ```injectablephp
+    ```php
     <?php
     include "connection.php";
     
