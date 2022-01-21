@@ -68,16 +68,14 @@
     
     // Check connection
     if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    exit();
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        exit();
     }
     ```
     ```php
     #movie-list.php
     <?php
     include "connection.php";
-    
-    
     
     # Query the db based on the requirement and get the result
     $query_result = mysqli_query($conn, "SELECT movie_id, movie_title, movie_thumbnail FROM movie");
