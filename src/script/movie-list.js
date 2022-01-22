@@ -1,6 +1,7 @@
 $(document).ready(() => {
     function getMovieList() {
         $.ajax(
+            //return all movie with movie_id, movie_title, movie_thumbnail
             "./api/movie-list.php",
             {
                 success: (response) => {
@@ -52,7 +53,6 @@ $(document).ready(() => {
                             movie_thumbnail: "./resource/no-image.png"
                         },
                     ];
-
                     print(result);
                 },
             }
