@@ -5,13 +5,13 @@ $(document).ready(() => {
             "./api/movie-list.php",
             {
                 success: (response) => {
-                    let result = JSON.parse(response);
+                    const result = JSON.parse(response);
                     print(result)
                 },
 
                 error: () => {
                     //Dummy, should remove after prototype phase
-                    let result = [
+                    const result = [
                         {
                             movie_id: 0,
                             movie_title: "Movie 1",
