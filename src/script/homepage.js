@@ -150,7 +150,7 @@ $(document).ready(() => {
                             movie_thumbnail: "./src/resource/no-image.png"
                         },
                     ];
-                    printCarousel(result, "movie_today-placeholder");
+                    printCarousel(result, "movie-today-placeholder");
                 }
             }
         );
