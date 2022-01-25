@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS Member (
     member_id INT NOT NULL AUTO_INCREMENT,
-    member_first_name VARCHAR(30) NOT NULL,
-    member_last_name VARCHAR(30),
+    member_username VARCHAR(30) NOT NULL,
     member_email VARCHAR(30) NOT NULL,
     member_password VARCHAR(30) NOT NULL,
     member_phone VARCHAR(30) NOT NULL,
