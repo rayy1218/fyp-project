@@ -14,7 +14,7 @@
 	<title>Ticket Purchasing</title>
 </head>
 <body>
-<header>
+<header class="position-sticky sticky-top bg-white">
 	<div class="container d-none d-md-block">
 		<div class="d-flex flex-wrap justify-content-center">
 			<div class="d-flex align-items-center"><a href="/index.html" class="fw-bold p-0 btn">Website Title</a></div>
@@ -60,28 +60,26 @@
 			<div class="col-2">
 				<label for="seat-check-group">Seat</label>
 			</div>
-			<div class="col-10">
+			<div class="col-md-10">
 				<div id="seat-check-group">
-					<table class="seat-display-table">
 
-					</table>
 				</div>
 			</div>
 		</div>
 		<div class="row m-2">
-			<div class="col">
+			<div class="col-sm">
 				<div class="form-group">
 					<label for="adult-num">Adult</label>
 					<input class="form-control" id="adult-num" name="adult-num" type="number" value="0" readonly/>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-sm">
 				<div class="form-group">
 					<label for="child-elder-num">Child/Elder</label>
 					<input class="form-control" id="child-elder-num" name="child-elder-num" type="number" value="0" min="0" max="0"/>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-sm">
 				<div class="form-group">
 					<label for="student-num">Student</label>
 					<input class="form-control" id="student-num" name="student-num" type="number" value="0" min="0" max="0"/>

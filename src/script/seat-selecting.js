@@ -60,24 +60,24 @@ $(document).ready(() => {
             let to_append =  "";
             let i = 0;
             for (let row = 0; row < ROW_NUM; row += 1) {
-                to_append += "<tr>";
+                to_append += `<div class="row flex-nowrap w-100">`;
                 for (let col = 0; col < COL_NUM; col += 1) {
                     if (col === 2 || col === 7) {
-                        to_append += "<td style='background-color: gray'>-</td>";
+                        to_append += `<div class="border rounded col p-0" style='background-color: gray'></div>`;
                         continue;
                     }
                     else if (result[i].ticket_id == null) {
-                        to_append += `<td style='background-color: green'><button type="button" class='btn seat-btn' id="seat${i}" onClick="toggleSeat('seat${i}', ${result[i].seat_id})">👤</button></td>`;
+                        to_append += `<div class="border rounded col p-0" style='background-color: green'><button type="button" class='btn seat-btn p-0 w-100 h-100' id="seat${i}" onClick="toggleSeat('seat${i}', ${result[i].seat_id})"></button></div>`;
                     }
                     else {
-                        to_append += "<td style='background-color: red'><button class='btn' disabled>👤</button></td>>";
+                        to_append += `<div class="border rounded col p-0" style='background-color: red'><button class='btn p-0' disabled></button></div>`;
                     }
                     i++;
                 }
-                to_append += "</tr>";
+                to_append += "</div>";
             }
 
-            $(".seat-display-table").append(to_append);
+            $("#seat-check-group").append(to_append);
 
             $(".seat-btn").click(() => {
                 resetTicketTypeInput();
