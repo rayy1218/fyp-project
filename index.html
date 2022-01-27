@@ -14,27 +14,43 @@
   <script src="./src/script/prototype-navi.js"></script>
 </head>
 <body>
+
 <header>
-  <div class="container">
-    <div class="row">
-      <div class="header-left col-sm d-flex">
-        <a href="./index.html" class="btn">Home</a>
-        <div class="dropdown">
-          <button class="btn dropdown-toggle d-block" type="button" id="account-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="account-dropdown">
-            <li><a class="dropdown-item" href="./src/register.html">Register</a></li>
-            <li><a class="dropdown-item" href="./src/login.html">Login</a></li>
-          </ul>
-        </div>
-        <a href="./src/movie-list.html" class="btn">All Movie</a>
+  <div class="container d-none d-md-block">
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="d-flex align-items-center"><a href="/index.html" class="fw-bold p-0 btn">Website Title</a></div>
+      <div class="d-flex flex-wrap justify-content-center me-md-auto">
+        <a href="/index.html" class="btn">Home</a>
+        <a href="/src/movie-list.html" class="btn">All Movie</a>
+        <a href="#" class="btn">Other</a>
       </div>
-      <div class="header-right col-sm-auto">
-        <button class="btn">
-          Other
+      <div class="d-flex flex-wrap justify-content-center">
+        <a class="btn" href="/src/register.html">Register</a>
+        <a class="btn" href="/src/login.html">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid d-md-none">
+    <div class="row">
+      <div class="col d-flex align-content-center">
+        <p class="my-auto"><a class="text-decoration-none text-dark fs-5 fw-bold" href="/index.html">Website Title</a></p>
+      </div>
+      <div class="col-auto">
+        <button class="navbar-toggler navbar-light text-end" type="button" data-bs-toggle="collapse" data-bs-target="#header-collapse" aria-controls="header-collapse" aria-expanded="false" aria-label="Toggle navigation collapse">
+          <span class="navbar-toggler-icon"></span>
         </button>
       </div>
+    </div>
+
+    <div class="collapse" id="header-collapse">
+      <ul class="navbar-nav">
+        <li><a href="/index.html" class="btn">Home</a></li>
+        <li><a href="/src/movie-list.html" class="btn">All Movie</a></li>
+        <li><a href="#" class="btn">Other</a></li>
+        <li><a class="btn" href="/src/register.html">Register</a></li>
+        <li><a class="btn" href="/src/login.html">Login</a></li>
+      </ul>
     </div>
   </div>
   <hr class="m-0" />
