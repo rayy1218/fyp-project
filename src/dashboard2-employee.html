@@ -67,34 +67,187 @@
         </div>
       </div>
       <div class="col-auto">
-        <button class="btn btn-primary">Add Movie</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-movie-modal">Add Movie</button>
       </div>
     </div>
     <ol class="list-group" id="movie-list">
 
     </ol>
+
+    <div class="modal fade" id="add-movie-modal" tabindex="1" aria-labelledby="#add-movie-modal-title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="add-movie-modal-title">Add Movie</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="add-movie-form">
+              <div class="mb-3">
+                <label for="add-movie-title">Movie Title</label>
+                <input type="text" name="movie-title" id="add-movie-title" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="add-movie-thumbnail">Movie Thumbnail</label>
+                <input type="url" name="movie-thumbnail" id="add-movie-thumbnail" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="add-movie-duration">Movie Duration(minutes)</label>
+                <input type="number" name="movie-duration" id="add-movie-duration" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="add-movie-rating">Movie Rating</label>
+                <input type="number" name="movie-rating" min="0" max="5" id="add-movie-rating" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="add-movie-genre" name="movie-genre" aria-label="Movie Genre">
+                  <option value="not-selected" selected>Select Genre</option>
+                  <option value="action">Action</option>
+                  <option value="comedy">Comedy</option>
+                  <option value="fantasy">Fantasy</option>
+                  <option value="sci-fi">Sci-fi</option>
+                  <option value="horror">Horror</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="add-movie-language" name="movie-language" aria-label="Movie Language">
+                  <option value="not-selected" selected>Select Language</option>
+                  <option value="english">English</option>
+                  <option value="malay">Malay</option>
+                  <option value="tamil">Tamil</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="add-movie-censorship" name="movie-censorship" aria-label="Movie Censorship Rating">
+                  <option value="not-selected" selected>Select Censorship rating</option>
+                  <option value="u">U</option>
+                  <option value="p13">P13</option>
+                  <option value="18sg">18SG</option>
+                  <option value="18sx">18SX</option>
+                  <option value="18pa">18PA</option>
+                  <option value="18pl">18PL</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="add-movie-description">Movie Description</label>
+                <textarea type="time" name="movie-description" id="add-movie-description" class="form-control"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" id="modal-add-movie-btn">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="edit-movie-modal" tabindex="1" aria-labelledby="edit-movie-modal-title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="edit-movie-modal-title">Add Movie</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-movie-form">
+              <div class="mb-3">
+                <label for="edit-movie-title">Movie Title</label>
+                <input type="text" name="movie-title" id="edit-movie-title" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="edit-movie-thumbnail">Movie Thumbnail</label>
+                <input type="url" name="movie-thumbnail" id="edit-movie-thumbnail" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="edit-movie-duration">Movie Duration(minutes)</label>
+                <input type="number" name="movie-duration" id="edit-movie-duration" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="edit-movie-rating">Movie Rating</label>
+                <input type="number" name="movie-rating" min="0" max="5" id="edit-movie-rating" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="edit-movie-genre" name="movie-genre" aria-label="Movie Genre">
+                  <option value="not-selected">Select Genre</option>
+                  <option value="action">Action</option>
+                  <option value="comedy">Comedy</option>
+                  <option value="fantasy">Fantasy</option>
+                  <option value="sci-fi">Sci-fi</option>
+                  <option value="horror">Horror</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="edit-movie-language" name="movie-language" aria-label="Movie Language">
+                  <option value="not-selected">Select Language</option>
+                  <option value="english">English</option>
+                  <option value="malay">Malay</option>
+                  <option value="tamil">Tamil</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="edit-movie-censorship" name="movie-censorship" aria-label="Movie Censorship Rating">
+                  <option value="not-selected">Select Censorship rating</option>
+                  <option value="u">U</option>
+                  <option value="p13">P13</option>
+                  <option value="18sg">18SG</option>
+                  <option value="18sx">18SX</option>
+                  <option value="18pa">18PA</option>
+                  <option value="18pl">18PL</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="edit-movie-description">Movie Description</label>
+                <textarea type="time" name="movie-description" id="edit-movie-description" class="form-control"></textarea>
+              </div>
+
+              <input class="movie-id-field" id="edit-movie-id-field" type="hidden" name="movie_id">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" id="modal-edit-movie-btn">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="schedule-add-movie-modal" tabindex="1" aria-labelledby="schedule-add-movie-modal-title" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="schedule-add-movie-modal-title">Add Movie</h5>
+            <h5 class="modal-title" id="schedule-add-movie-modal-title">Add Movie to Schedule</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form id="schedule-add-movie-form" action="" method="get">
               <div class="mb-3">
-                <label for="date">Date</label>
-                <input type="date" name="date" id="date" class="form-control" />
+                <select class="form-select" id="schedule-cinema" name="cinema" aria-label="Cinema">
+                  <option selected>Select Cinema</option>
+                </select>
               </div>
               <div class="mb-3">
-                <label for="time">Time</label>
-                <input type="time" name="time" id="time" class="form-control" />
+                <select class="form-select" id="schedule-theater" name="theater" aria-label="Theater" disabled>
+                  <option selected>Select Theater</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="schedule-date">Date</label>
+                <input type="date" name="date" id="schedule-date" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="schedule-time">Time</label>
+                <input type="time" name="time" id="schedule-time" class="form-control" />
               </div>
               <div>
                 <input type="hidden" name="action" value="add-movie-to-schedule" readonly />
               </div>
               <div>
-                <input class="movie-id-field" type="hidden" name="movie_id">
+                <input class="movie-id-field" id="schedule-movie-id-field" type="hidden" name="movie_id">
               </div>
             </form>
           </div>
@@ -105,7 +258,27 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="delete-movie-modal" tabindex="1" aria-labelledby="delete-movie-modal-title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="delete-movie-modal-title">Delete Movie</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Delete this movie ?
+            <input class="movie-id-field" id="delete-movie-id-field" type="hidden" name="movie_id">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="submit" class="btn btn-primary" id="modal-delete-movie-btn">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 
 </div>
 

@@ -10,7 +10,7 @@
   <title>Cinema and Theater Management</title>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script/dashboard-employee.js"></script>
+  <script src="script/cinema-theater.js"></script>
   <script src="script/search-movie.js"></script>
 </head>
 <body>
@@ -60,28 +60,71 @@
   <div class="p-2 border border-top-0">
       <div class="row">
         <div class="col input-group mb-2">
-          <label class="input-group-text" for="cinema-select">Cinema</label>
-          <select class="form-select" id="cinema-select">
-            <option>Choose Cinema</option>
-            <option>Cinema 1</option>
-            <option>Cinema 2</option>
-            <option>Cinema 3</option>
+          <label class="input-group-text" for="cinema-placeholder">Cinema</label>
+          <select class="form-select cinema-select" id="cinema-placeholder">
+            <option value="not-selected">Choose Cinema</option>
           </select>
-          <!--button below is for prototype use only-->
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#theater-collapse" aria-expanded="false" aria-controls="theater-collapse">></button>
+
+          <button class="btn btn-primary" type="button" id="query-theater-btn">></button>
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary">Add Cinema</button>
+          <button class="btn btn-primary" id="add-cinema-modal-call-btn" data-bs-toggle="modal" data-bs-target="#add-cinema-modal">Add Cinema</button>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary" id="add-theater-modal-call-btn" data-bs-toggle="modal" data-bs-target="#add-theater-modal" disabled>Add Theater</button>
         </div>
       </div>
-      <div class="collapse" id="theater-collapse">
-        <ul class="list-group list-group-numbered">
-          <li class="list-group-item">Theater 1</li>
-          <li class="list-group-item">Theater 2</li>
-          <li class="list-group-item">Theater 3</li>
+
+        <ul class="list-group list-group-numbered" id="theater-placeholder">
         </ul>
-      </div>
   </div>
+
+  <div class="modal fade" id="add-cinema-modal" tabindex="-1" aria-labelledby="add-cinema-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="add-cinema-modal-title">Add Cinema</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="add-cinema-address">Cinema Address/Name</label>
+              <input class="form-control" id="add-cinema-address" type="text" placeholder="Enter cinema address/name"/>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="add-cinema-btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="add-theater-modal" tabindex="-1" aria-labelledby="add-theater-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="add-theater-modal-title">Add Theater</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="add-theater-name">Theater Name</label>
+              <input class="form-control" id="add-theater-name" type="text" placeholder="Enter theater name"/>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="add-theater-btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <footer>

@@ -10,6 +10,7 @@
   <title>Schedule Management</title>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./script/schedule-employee.js"></script>
 </head>
 <body>
   <header>
@@ -59,23 +60,13 @@
         <div class="input-group mb-2">
           <label class="input-group-text" for="schedule-cinema-select">Cinema</label>
           <select class="form-select" id="schedule-cinema-select">
-            <option>Choose Cinema</option>
-            <option>Cinema 1</option>
-            <option>Cinema 2</option>
-            <option>Cinema 3</option>
+            <option selected value="not-selected">Choose Cinema</option>
           </select>
-          <label class="input-group-text" for="schedule-theater-select">Theater</label>
-          <select class="form-select" id="schedule-theater-select">
-            <option>Choose Theater</option>
-            <option>Theater 1</option>
-            <option>Theater 2</option>
-            <option>Theater 3</option>
-          </select>
-          <!--button below is for prototype use only-->
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#schedule-accordion" aria-expanded="false" aria-controls="schedule-accordion">></button>
+
+          <button class="btn btn-primary" type="button" id="query-scheduled-movie-btn" disabled>></button>
         </div>
 
-        <div class="accordion collapse" id="schedule-accordion">
+        <div class="accordion collapse d-none" id="schedule-accordion">
           <!--
             TEMPLATE FOR ACCORDION ITEM
             <div class="accordion-item">
@@ -276,7 +267,74 @@
             </div>
           </div>
         </div>
+        <div id="scheduled-movie-placeholder"></div>
       </div>
+  </div>
+
+  <div class="modal fade" id="delete-scheduled-movie-modal" tabindex="-1" aria-labelledby="delete-scheduled-movie-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delete-scheduled-movie-modal-title">Delete Movie from schedule</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Delete this movie from Schedule?
+          <input class="scheduled-movie-id-field" id="delete-scheduled-movie-id-field" type="hidden" name="scheduled_movie_id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" id="modal-delete-scheduled-movie-btn">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="edit-scheduled-movie-modal" tabindex="-1" aria-labelledby="edit-scheduled-movie-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="edit-scheduled-movie-modal-title">Edit Schedule Movie</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <div class="modal-body">
+                <form id="schedule-add-movie-form" action="" method="get">
+                  <div class="mb-3">
+                    <select class="form-select" id="schedule-cinema" name="cinema" aria-label="Cinema">
+                      <option selected>Select Cinema</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <select class="form-select" id="schedule-theater" name="theater" aria-label="Theater" disabled>
+                      <option selected>Select Theater</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="schedule-date">Date</label>
+                    <input type="date" name="date" id="schedule-date" class="form-control" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="schedule-time">Time</label>
+                    <input type="time" name="time" id="schedule-time" class="form-control" />
+                  </div>
+                  <div>
+                    <input class="movie-id-field" id="schedule-movie-id-field" type="hidden" name="movie_id">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </form>
+          <input class="scheduled-movie-id-field" id="edit-scheduled-movie-id-field" type="hidden" name="scheduled_movie_id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn btn-primary" id="modal-edit-scheduled-movie-btn">Submit</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>

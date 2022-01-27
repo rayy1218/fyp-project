@@ -2,8 +2,13 @@ $(document).ready(() => {
     function getMovieList() {
         $.ajax(
             //return all movie with movie_id, movie_title, movie_thumbnail
-            "./api/movie-list.php",
+            "./api/movie-crud.php",
             {
+                type: "GET",
+                data: {
+                    action: "read",
+                    col: "movie_id,movie_title,movie_thumbnail"
+                },
                 success: (response) => {
                     const result = JSON.parse(response);
                     print(result)
