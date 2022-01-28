@@ -2,7 +2,7 @@ DELETE FROM Member WHERE NOT member_id = 1;
 INSERT INTO Member (member_username, member_email, member_password, member_phone, member_birthday)
 VALUES
 (
-    'Second User'
+    'user',
     'second_user@gmail.com',
     '1234',
     '012-3456789',

@@ -5,6 +5,7 @@ $(document).ready(() => {
             {
                 type: "POST",
                 data: {
+                    action: "login",
                     username: $("#uname").val(),
                     password: $("#psw").val()
                 },
@@ -25,7 +26,6 @@ $(document).ready(() => {
         function respond(result) {
             switch (result.status) {
                 case "success":
-                    window.sessionStorage.setItem("user_id", result.user_id);
                     window.location.href = "./dashboard.html";
                     break;
 
@@ -46,6 +46,7 @@ $(document).ready(() => {
             {
                 type: "POST",
                 data: {
+                    action: "register",
                     username: $("#uname").val(),
                     email: $("#email").val(),
                     password: $("#psw").val(),

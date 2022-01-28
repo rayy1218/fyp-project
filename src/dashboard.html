@@ -11,7 +11,8 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="./script/dashboard.js"></script>
-  <script src="/src/script/prototype-navi.js"></script>
+  <script src="/src/script/prototype-tool.js"></script>
+  <script src="/src/script/header.js"></script>
 </head>
 <body>
 <header class="position-sticky sticky-top bg-white">
@@ -23,9 +24,9 @@
         <a href="/src/movie-list.html" class="btn">All Movie</a>
         <a href="#" class="btn">Other</a>
       </div>
-      <div class="d-flex flex-wrap justify-content-center">
-        <a class="btn" href="/src/register.html">Register</a>
-        <a class="btn" href="/src/login.html">Login</a>
+      <div class="d-flex flex-wrap justify-content-center" id="header-right">
+        <a href="/src/dashboard.html" id="dashboard-anchor-placeholder" class="btn">Dashboard</a>
+        <button class="btn" id="logout-btn">Logout</button>
       </div>
     </div>
   </div>
@@ -43,7 +44,7 @@
     </div>
 
     <div class="collapse" id="header-collapse">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" id="nav-list">
         <li><a href="/index.html" class="btn">Home</a></li>
         <li><a href="/src/movie-list.html" class="btn">All Movie</a></li>
         <li><a href="#" class="btn">Other</a></li>
