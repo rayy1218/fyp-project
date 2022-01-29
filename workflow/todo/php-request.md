@@ -1,4 +1,4 @@
-###For you information
+### For you information
 1. By return, it means echo
 2. Before echo convert the object or array to json datatype
 3. data = "movie_id" mean that movie_id is sent as data and can be access by $_GET or $_POST based on the method 
@@ -27,7 +27,7 @@
       echo json_encode($row);
   ```
 
-###Request of php
+### Request of php
 
 - homepage.php (homepage.js)
   - action="promoted-movie" GET
