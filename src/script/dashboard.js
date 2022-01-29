@@ -2,7 +2,7 @@ $(document).ready(() => {
     function getWatchedHistory() {
         $.ajax(
             //join ticket, scheduled_movie, movie and return movie_id, movie_title, movie_thumbnail where ticket_status = "used"
-            "dashboard.php?action=watched-history",
+            "/src/api/dashboard.php?action=watched-history",
             {
                 success: (response) => {
                     const result = JSON.parse(response);
@@ -102,7 +102,7 @@ $(document).ready(() => {
     function getPurchasedTicket() {
         $.ajax(
             //join ticket, scheduled_movie, movie and return ticket_id, movie_id, movie_title, movie_thumbnail where ticket_status = paid and scheduled_movie_showing_date >= today
-            "dashboard.php?action=purchased-ticket",
+            "/src/api/dashboard.php?action=purchased-ticket",
             {
                 success: (response) => {
                     const result = JSON.parse(response);
