@@ -4,8 +4,13 @@ $(document).ready(() => {
 
     function getDetail() {
         $.ajax(
-            `./api/movie-details.php?movie_id=${movie_id}`,
+            `./api/movie-crud.php`,
             {
+                type: "GET",
+                data: {
+                    col: "movie_title,movie_duration,movie_genre,movie_language,movie_censorship_rating,movie_rating,movie_description,movie_thumbnail",
+                    condition: `movie_id=${movie_id}`
+                },
                 success: (response) => {
                     const result = JSON.parse(response);
                     print(result);
