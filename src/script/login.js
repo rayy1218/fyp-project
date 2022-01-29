@@ -17,7 +17,6 @@ $(document).ready(() => {
                 error: () => {
                     const result = {
                         status: "success",
-                        user_id: 1
                     }
                     respond(result);
                 }
