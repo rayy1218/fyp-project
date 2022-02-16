@@ -15,8 +15,21 @@ $(document).ready(() => {
                     respond(result);
                 },
                 error: () => {
-                    const result = {
+                    let result = {
                         status: "success",
+                    }
+
+                    if ($("#uname").val() === "error") {
+                        result["status"] = "username-failure";
+                    }
+                    else if ($("#psw").val() === "error") {
+                        result["status"] = "password-failure";
+                    }
+                    else if ($("#uname").val() === "admin") {
+                        window.sessionStorage.setItem("status", "employee");
+                    }
+                    else {
+                        window.sessionStorage.setItem("status", "member");
                     }
                     respond(result);
                 }
@@ -25,7 +38,32 @@ $(document).ready(() => {
         function respond(result) {
             switch (result.status) {
                 case "success":
-                    window.location.href = "./dashboard.html";
+                    $.ajax(
+                        "/src/api/login.php",
+                        {
+                            data: {
+                                action: "get-user-status",
+                            },
+                            success: (response) => {
+                                switch (response["status"]) {
+                                    case "employee":
+                                        window.location.href = "/src/dashboard1-employee.html";
+                                        break;
+                                    case "member":
+                                        window.location.href = "/src/dashboard.html";
+                                }
+                            },
+                            error: () => {
+                                switch (window.sessionStorage.getItem("status")) {
+                                    case "employee":
+                                        window.location.href = "/src/dashboard1-employee.html";
+                                        break;
+                                    case "member":
+                                        window.location.href = "/src/dashboard.html";
+                                }
+                            }
+                        }
+                    );
                     break;
 
                 case "username-failure":

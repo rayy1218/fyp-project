@@ -11,6 +11,11 @@ $(document).ready(() => {
                     print(result);
                 },
                 error: () => {
+                    let status = window.sessionStorage.getItem("status");
+                    if (status == null) {
+                        window.sessionStorage.setItem("status", "guest");
+                    }
+
                     const result = {
                         status: window.sessionStorage.getItem("status"),
                         member_id: 1
@@ -80,6 +85,7 @@ $(document).ready(() => {
                 },
                 error: () => {
                     window.location.href = "/index.html";
+                    window.sessionStorage.setItem("status", "guest");
                 }
             }
         );
