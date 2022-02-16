@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS Movie (
     movie_id INT NOT NULL AUTO_INCREMENT,
     movie_title VARCHAR(100) NOT NULL,
     movie_thumbnail VARCHAR(100) NOT NULL,
+    movie_duration INT NOT NULL,
     movie_description VARCHAR(1000),
     movie_genre VARCHAR(30),
     movie_language VARCHAR(30),
