@@ -53,7 +53,12 @@
 </header>
   <div class="container mt-3 content">
     <nav class="mt-2">
-      <div class="nav nav-tabs" id="management-nav" role="tablist">
+      <div class="nav nav-tabs d-md-flex d-none" role="tablist">
+        <a href="./dashboard1-employee.html" class="nav-link active" aria-selected="true" disabled>Schedule</a>
+        <a href="./dashboard2-employee.html" class="nav-link" aria-selected="false">Movie List</a>
+        <a href="./dashboard3-employee.html" class="nav-link" aria-selected="false">Cinema & Theater</a>
+      </div>
+      <div class="nav flex-column d-md-none" role="tablist">
         <a href="./dashboard1-employee.html" class="nav-link active" aria-selected="true" disabled>Schedule</a>
         <a href="./dashboard2-employee.html" class="nav-link" aria-selected="false">Movie List</a>
         <a href="./dashboard3-employee.html" class="nav-link" aria-selected="false">Cinema & Theater</a>
@@ -62,7 +67,7 @@
 
     <div class="border border-top-0 p-2">
         <div class="input-group mb-2">
-          <label class="input-group-text" for="schedule-cinema-select">Cinema</label>
+          <label class="input-group-text d-none d-md-block" for="schedule-cinema-select">Cinema</label>
           <select class="form-select" id="schedule-cinema-select">
             <option selected value="not-selected">Choose Cinema</option>
           </select>
@@ -70,207 +75,6 @@
           <button class="btn btn-primary" type="button" id="query-scheduled-movie-btn" disabled>></button>
         </div>
 
-        <div class="accordion collapse d-none" id="schedule-accordion">
-          <!--
-            TEMPLATE FOR ACCORDION ITEM
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="heading${arr_index}">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${arr_index}" aria-controls="collapse${arr_index}" aria-expanded="false">
-                  ${date} (${date-day})
-                </button>
-              </h2>
-              <div id="collapse${arr_index}" class="accordion-collapse collapse" aria-labelledby="heading${arr_index}" data-bs-parent="#schedule-accordion">
-                <div class="accordion-body">
-                  <ol class="list-group">
-                    ACCORDION ITEM CONTENT(see below)
-                    <li></li>...
-                  </ol>
-                </div>
-              </div>
-            </div>
-
-            TEMPLATE FOR ACCORDION ITEM CONTENT
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col">
-                  <p class="fw-bold m-0">${movie_name}</p>
-                  <p class="m-0">${movie_description}</p>
-                  <p class="m-0">Start Time: ${movie_start_time} Duration: ${movie_duration}</p>
-                </div>
-                <div class="col-auto">
-                  <button class="btn btn-primary w-100">Edit</button>
-                  <br />
-                  <button class="btn btn-primary w-100 mt-2">Delete</button>
-                </div>
-              </div>
-            </li>
-          -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading0">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-controls="collapse0" aria-expanded="false">
-                12/12/2021 (Monday)
-              </button>
-            </h2>
-            <div id="collapse0" class="accordion-collapse collapse" aria-labelledby="heading0" data-bs-parent="#schedule-accordion">
-              <div class="accordion-body">
-                <ol class="list-group">
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading1">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-controls="collapse1" aria-expanded="false">
-                13/12/2021 (Tuesday)
-              </button>
-            </h2>
-            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#schedule-accordion">
-              <div class="accordion-body">
-                <ol class="list-group">
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading2">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-controls="collapse2" aria-expanded="false">
-                14/12/2021 (Wednesday)
-              </button>
-            </h2>
-            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#schedule-accordion">
-              <div class="accordion-body">
-                <ol class="list-group">
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        <p class="fw-bold m-0">movie_name</p>
-                        <p class="m-0">movie_description</p>
-                        <p class="m-0">Start Time: movie_start_time Duration: movie_duration</p>
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <br />
-                        <button class="btn btn-primary w-100 mt-2">Delete</button>
-                      </div>
-                    </div>
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
         <div id="scheduled-movie-placeholder"></div>
       </div>
   </div>

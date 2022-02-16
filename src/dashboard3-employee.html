@@ -54,7 +54,12 @@
 </header>
 <div class="container mt-3 content">
   <nav class="mt-2">
-    <div class="nav nav-tabs" id="management-nav" role="tablist">
+    <div class="nav nav-tabs d-md-flex d-none" role="tablist">
+      <a href="./dashboard1-employee.html" class="nav-link" aria-selected="false">Schedule</a>
+      <a href="./dashboard2-employee.html" class="nav-link" aria-selected="false">Movie List</a>
+      <a href="./dashboard3-employee.html" class="nav-link active" aria-selected="true" disabled>Cinema & Theater</a>
+    </div>
+    <div class="nav flex-column d-md-none" role="tablist">
       <a href="./dashboard1-employee.html" class="nav-link" aria-selected="false">Schedule</a>
       <a href="./dashboard2-employee.html" class="nav-link" aria-selected="false">Movie List</a>
       <a href="./dashboard3-employee.html" class="nav-link active" aria-selected="true" disabled>Cinema & Theater</a>
@@ -64,18 +69,18 @@
   <div class="p-2 border border-top-0">
       <div class="row">
         <div class="col input-group mb-2">
-          <label class="input-group-text" for="cinema-placeholder">Cinema</label>
+          <label class="input-group-text d-md-block d-none" for="cinema-placeholder">Cinema</label>
           <select class="form-select cinema-select" id="cinema-placeholder">
             <option value="not-selected">Choose Cinema</option>
           </select>
 
           <button class="btn btn-primary" type="button" id="query-theater-btn">></button>
         </div>
-        <div class="col-auto">
-          <button class="btn btn-primary" id="add-cinema-modal-call-btn" data-bs-toggle="modal" data-bs-target="#add-cinema-modal">Add Cinema</button>
-        </div>
-        <div class="col-auto">
-          <button class="btn btn-primary" id="add-theater-modal-call-btn" data-bs-toggle="modal" data-bs-target="#add-theater-modal" disabled>Add Theater</button>
+        <div class="col-md-auto">
+          <div class="d-flex align-content-around flex-wrap">
+            <button class="btn btn-primary me-2 mb-md-0 mb-2" id="add-cinema-modal-call-btn" data-bs-toggle="modal" data-bs-target="#add-cinema-modal">Add Cinema</button>
+            <button class="btn btn-primary mb-2 mb-md-0" id="add-theater-modal-call-btn" data-bs-toggle="modal" data-bs-target="#add-theater-modal" disabled>Add Theater</button>
+          </div>
         </div>
       </div>
 

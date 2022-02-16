@@ -55,7 +55,12 @@
 <div class="container mt-3 content">
 
   <nav class="mt-2">
-    <div class="nav nav-tabs" id="management-nav" role="tablist">
+    <div class="nav nav-tabs d-md-flex d-none" role="tablist">
+      <a href="./dashboard1-employee.html" class="nav-link" aria-selected="false">Schedule</a>
+      <a href="./dashboard2-employee.html" class="nav-link active" aria-selected="true" disabled>Movie List</a>
+      <a href="./dashboard3-employee.html" class="nav-link" aria-selected="false">Cinema & Theater</a>
+    </div>
+    <div class="nav flex-column d-md-none" role="tablist">
       <a href="./dashboard1-employee.html" class="nav-link" aria-selected="false">Schedule</a>
       <a href="./dashboard2-employee.html" class="nav-link active" aria-selected="true" disabled>Movie List</a>
       <a href="./dashboard3-employee.html" class="nav-link" aria-selected="false">Cinema & Theater</a>
@@ -70,7 +75,7 @@
           <button class="btn btn-primary" type="button" onclick="searchMovie()">></button>
         </div>
       </div>
-      <div class="col-auto">
+      <div class="col-sm-auto mt-sm-0 mt-2">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-movie-modal">Add Movie</button>
       </div>
     </div>
@@ -128,10 +133,6 @@
                   <option value="not-selected" selected>Select Censorship rating</option>
                   <option value="u">U</option>
                   <option value="p13">P13</option>
-                  <option value="18sg">18SG</option>
-                  <option value="18sx">18SX</option>
-                  <option value="18pa">18PA</option>
-                  <option value="18pl">18PL</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -142,6 +143,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input class="btn btn-secondary" type="reset" form="add-movie-form" />
             <button class="btn btn-primary" id="modal-add-movie-btn">Add</button>
           </div>
         </div>
@@ -198,10 +200,6 @@
                   <option value="not-selected">Select Censorship rating</option>
                   <option value="u">U</option>
                   <option value="p13">P13</option>
-                  <option value="18sg">18SG</option>
-                  <option value="18sx">18SX</option>
-                  <option value="18pa">18PA</option>
-                  <option value="18pl">18PL</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -214,6 +212,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input class="btn btn-secondary" type="reset" form="edit-movie-form" />
             <button class="btn btn-primary" id="modal-edit-movie-btn">Edit</button>
           </div>
         </div>
