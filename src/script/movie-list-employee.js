@@ -2,15 +2,13 @@ $(document).ready(() => {
     function getMovieList() {
         $.ajax(
             //return all_movie with movie_id, movie_title, movie_duration
-            "./api/movie-crud.php",
+            "./api/movie.php",
             {
                 data: {
-                    action: 'read',
-                    col: "movie_id,movie_title,movie_duration",
+                    action: 'get-movie-list-employee',
                 },
                 success: (response) => {
-                    const result = JSON.parse(response)
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     //Dummy, should remove after prototype phase
@@ -93,52 +91,23 @@ $(document).ready(() => {
     }
 
     function addMovie() {
-        const movie = {
-            movie_title: $("#add-movie-title").val(),
-            movie_thumbnail: $("#add-movie-thumbnail").val(),
-            movie_duration: $("#add-movie-duration").val(),
-            movie_rating: $("#add-movie-rating").val(),
-            movie_genre: $("#add-movie-genre").val(),
-            movie_language: $("#add-movie-language").val(),
-            movie_censorship_rating: $("#add-movie-censorship").val(),
-            movie_description: $("#add-movie-description").val(),
-        }
-
-        let col = "", values = "", first = true;
-        for (let property in movie) {
-            if (first) {
-                col += `${property}`;
-                if (property === "movie_duration") {
-                    values += `${movie[property]}`;
-                }
-                else {
-                    values += `'${movie[property]}'`;
-                }
-            }
-            else {
-                col += `,${property}`;
-                if (property === "movie_duration") {
-                    values += `,${movie[property]}`;
-                }
-                else {
-                    values += `,'${movie[property]}'`;
-                }
-
-            }
-            first = false;
-        }
-
         $.ajax(
-            "./api/movie-crud.php",
+            "./api/movie.php",
             {
                 type: "GET",
                 data: {
-                    action: "create",
-                    col: col,
-                    values: values,
+                    action: "add-movie",
+                    "movie-title": $("#add-movie-title").val(),
+                    "movie-thumbnail": $("#add-movie-thumbnail").val(),
+                    "movie-duration": $("#add-movie-duration").val(),
+                    "movie-rating": $("#add-movie-rating").val(),
+                    "movie-genre": $("#add-movie-genre").val(),
+                    "movie-language": $("#add-movie-language").val(),
+                    "movie-censorship-rating": $("#add-movie-censorship").val(),
+                    "movie-description": $("#add-movie-description").val(),
                 },
                 success: () => {
-                    window.location.reload();
+                    window.location.reload()
                 }
             }
         );
@@ -146,31 +115,29 @@ $(document).ready(() => {
 
     function fillEditModal() {
         $.ajax(
-            "./api/movie-crud.php",
+            "./api/movie.php",
             {
                 type: "GET",
                 data: {
-                    action: "read",
-                    col: "*",
-                    condition: `movie_id=${$("#edit-movie-id-field").val()}`
+                    action: "get-movie-detail",
+                    "movie-id": $("#edit-movie-id-field").val()
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    fill(result);
+                    fill(response);
                 }
             }
         )
 
         function fill(result) {
-            $("#edit-movie-title").val(result[0].movie_title);
-            $("#edit-movie-thumbnail").val(result[0].movie_thumbnail);
-            $("#edit-movie-duration").val(result[0].movie_duration);
-            $("#edit-movie-rating").val(result[0].movie_rating);
-            $("#edit-movie-description").val(result[0].movie_description);
+            $("#edit-movie-title").val(result["movie_title"]);
+            $("#edit-movie-thumbnail").val(result["movie_thumbnail"]);
+            $("#edit-movie-duration").val(result["movie_duration"]);
+            $("#edit-movie-rating").val(result["movie_rating"]);
+            $("#edit-movie-description").val(result["movie_description"]);
 
-            selectOption("#edit-movie-genre", result[0].movie_genre);
-            selectOption("#edit-movie-language", result[0].movie_language);
-            selectOption("#edit-movie-censorship", result[0].movie_censorship_rating);
+            selectOption("#edit-movie-genre", result["movie_genre"]);
+            selectOption("#edit-movie-language", result["movie_language"]);
+            selectOption("#edit-movie-censorship", result["movie_censorship_rating"]);
         }
 
         function selectOption(select_id, option_to_select) {
@@ -187,39 +154,25 @@ $(document).ready(() => {
     }
 
     function editMovie() {
-        const movie = {
-            movie_title: $("#edit-movie-title").val(),
-            movie_thumbnail: $("#edit-movie-thumbnail").val(),
-            movie_duration: $("#edit-movie-duration").val(),
-            movie_rating: $("#edit-movie-rating").val(),
-            movie_genre: $("#edit-movie-genre").val(),
-            movie_language: $("#edit-movie-language").val(),
-            movie_censorship_rating: $("#edit-movie-censorship").val(),
-            movie_description: $("#edit-movie-description").val(),
-        }
-
-        let set = "", condition = `movie_id = ${$("#edit-movie-id-field").val()}`, first = true;
-        for (let property in movie) {
-            if (first) {
-                set += `${property}='${movie[property]}'`
-            }
-            else {
-                set += `,${property}='${movie[property]}'`
-            }
-            first = false;
-        }
-
         $.ajax(
-            "./api/movie-crud.php",
+            "./api/movie.php",
             {
                 type: "GET",
                 data: {
-                    action: "update",
-                    set: set,
-                    condition: condition,
+                    action: "edit-movie",
+                    "movie-id": $("#edit-movie-id-field").val(),
+                    "movie-title": $("#edit-movie-title").val(),
+                    "movie-thumbnail": $("#edit-movie-thumbnail").val(),
+                    "movie-duration": $("#edit-movie-duration").val(),
+                    "movie-rating": $("#edit-movie-rating").val(),
+                    "movie-genre": $("#edit-movie-genre").val(),
+                    "movie-language": $("#edit-movie-language").val(),
+                    "movie-censorship-rating": $("#edit-movie-censorship").val(),
+                    "movie-description": $("#edit-movie-description").val(),
                 },
                 success: () => {
-                    window.location.reload();
+                    console.log("edit");
+                    window.location.reload()
                 }
             }
         );
@@ -227,15 +180,16 @@ $(document).ready(() => {
 
     function deleteMovie() {
         $.ajax(
-            "./api/movie-crud.php",
+            "./api/movie.php",
             {
                 type: "GET",
                 data: {
-                    action: "delete",
-                    condition: `movie_id = ${$("#delete-movie-id-field").val()}`
+                    action: "delete-movie",
+                    "movie-id": $("#delete-movie-id-field").val()
                 },
                 success: () => {
-                    window.location.reload();
+                    getMovieList();
+                    window.location.reload()
                 },
                 error: () => {
 
