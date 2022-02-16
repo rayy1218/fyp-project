@@ -53,7 +53,7 @@
       - return object["status" = "re_password_error"] if password didn't match re-password
       - return object["status" = "username_error"] if same username found
       - else return object["status" = "success"]
-  - action="get-user-status" POST
+  - action="get-user-status" GET
     - object["status" = "guest"] if session["username"] & session["password"] not set
     - object["status" = "member"] if session["username"] & session["password"] set and match but 
     the member_id not in employee.member_id
@@ -103,7 +103,7 @@
     - data = "ticket_id"
     - return object["member_name, ticket_payment_amount, movie_name, movie_censorship_rating, cinema_address, 
       theater_name, scheduled_movie_showing_date, scheduled_movie_start_time, ticket_adult_num, ticket_child_elder_num, ticket_student_num, ticket_token"]
-  - action="send-email" POST
+  - action="send-email" GET
     - data = "ticket_id"
     - query the member_email and send the email with html of receipt
 
@@ -131,9 +131,9 @@
 
 
 - dashboard.php (dashboard.js)
-  - action="watched-history" 
+  - action="watched-history" GET
     - query ticket join scheduled_movie and movie with ticket_status = "watched"
     - return arr[9] of object["movie_id, movie_title, movie_thumbnail"]
-  - action="purchased-ticket"
+  - action="purchased-ticket" GET
     - query ticket join scheduled_movie and movie with ticket_status = "paid"
     - return arr[9] of object["ticket_id, movie_id, movie_title, movie_thumbnail"] 
