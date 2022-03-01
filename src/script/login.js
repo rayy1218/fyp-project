@@ -10,31 +10,11 @@ $(document).ready(() => {
                     password: $("#psw").val()
                 },
                 success: (response) => {
-                    console.log(response);
-                    const result = JSON.parse(response);
-                    respond(result);
+                    respond(response);
                 },
-                error: () => {
-                    let result = {
-                        status: "success",
-                    }
-
-                    if ($("#uname").val() === "error") {
-                        result["status"] = "username-failure";
-                    }
-                    else if ($("#psw").val() === "error") {
-                        result["status"] = "password-failure";
-                    }
-                    else if ($("#uname").val() === "admin") {
-                        window.sessionStorage.setItem("status", "employee");
-                    }
-                    else {
-                        window.sessionStorage.setItem("status", "member");
-                    }
-                    respond(result);
-                }
             }
         );
+
         function respond(result) {
             switch (result.status) {
                 case "success":
@@ -53,15 +33,6 @@ $(document).ready(() => {
                                         window.location.href = "/src/dashboard.html";
                                 }
                             },
-                            error: () => {
-                                switch (window.sessionStorage.getItem("status")) {
-                                    case "employee":
-                                        window.location.href = "/src/dashboard1-employee.html";
-                                        break;
-                                    case "member":
-                                        window.location.href = "/src/dashboard.html";
-                                }
-                            }
                         }
                     );
                     break;
@@ -79,7 +50,7 @@ $(document).ready(() => {
 
     function register() {
         $.ajax(
-            "./api/register.php",
+            "./api/login.php",
             {
                 type: "POST",
                 data: {
@@ -87,21 +58,14 @@ $(document).ready(() => {
                     username: $("#uname").val(),
                     email: $("#email").val(),
                     password: $("#psw").val(),
-                    re_password: $("#psw2").val(),
-                    phone_num: $("#phone").val()
+                    "re-password": $("#psw2").val(),
+                    "phone-num": $("#phone").val()
                 },
 
                 success: (response) => {
                     const result = JSON.parse(response);
                     respond(result);
                 },
-
-                error: () => {
-                    const result = {
-                        status: "success",
-                    }
-                    respond(result)
-                }
             }
         );
 
@@ -111,12 +75,16 @@ $(document).ready(() => {
                     window.location.href = "login.html";
                     break;
 
-                case "password_format_failure":
+                case "password-format-failure":
                     $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Password Format Failure</div>');
                     break;
 
-                case "re_password_failure":
+                case "re-password-failure":
                     $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Re-entered password did not match</div>');
+                    break;
+
+                case "username-failure":
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Username existed</div>');
                     break;
             }
         }

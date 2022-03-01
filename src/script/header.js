@@ -7,21 +7,8 @@ $(document).ready(() => {
                     action: "get-user-status",
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
-                error: () => {
-                    let status = window.sessionStorage.getItem("status");
-                    if (status == null) {
-                        window.sessionStorage.setItem("status", "guest");
-                    }
-
-                    const result = {
-                        status: window.sessionStorage.getItem("status"),
-                        member_id: 1
-                    }
-                    print(result);
-                }
             }
         );
 
@@ -83,10 +70,6 @@ $(document).ready(() => {
                 success: (response) => {
                     window.location.href = "/index.html";
                 },
-                error: () => {
-                    window.location.href = "/index.html";
-                    window.sessionStorage.setItem("status", "guest");
-                }
             }
         );
     }
