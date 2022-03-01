@@ -1,4 +1,65 @@
 $(document).ready(() => {
+    function getCinemaList() {
+        $.ajax("./api/cinema-theater.php",
+            {
+                type: "GET",
+                data: {
+                    action: "get-cinema-list",
+                },
+                success: (response) => {
+                    const result = JSON.parse(response);
+                    print(result);
+                },
+                error: () => {
+                    const result = [
+                        {cinema_id: 1, cinema_address: "Cinema First"},
+                    ];
+                    print(result);
+                }
+            }
+        );
+
+        function print(result) {
+            let append = "";
+            for (let row of result) {
+                append += `<option value="${row.cinema_id}">${row.cinema_address}</option>`
+            }
+            console.log(append);
+            $("#schedule-cinema").append(append);
+        }
+    }
+
+    function getTheaterList() {
+        $.ajax("./api/cinema-theater.php",
+            {
+                type: "GET",
+                data: {
+                    action: "get-theater-list",
+                    "cinema-id": $("#schedule-cinema").val()
+                },
+                success: (response) => {
+                    const result = JSON.parse(response);
+                    print(result);
+                },
+                error: () => {
+                    const result = [
+                        {theater_id: 1, theater_name: "Theater 1"},
+                        {theater_id: 2, theater_name: "Theater 2"},
+                    ];
+                    print(result);
+                }
+            }
+        );
+
+        function print(result) {
+            let append = "";
+            for (let row of result) {
+                append += `<option value="${row.theater_id}">${row.theater_name}</option>`
+            }
+            $("#schedule-theater").append(append);
+        }
+    }
+
     function getMovieList() {
         $.ajax(
             //return all_movie with movie_id, movie_title, movie_duration
@@ -201,9 +262,32 @@ $(document).ready(() => {
 
     function addMovieToSchedule() {
         $.ajax(
-            "./api/movie-to-schedule.php"
+            "./api/schedule-employee.php",
+            {
+                type: "GET",
+                data: {
+                    action: "add-scheduled-movie",
+                    "theater-id": $("#schedule-theater").val(),
+                    "date": $("#schedule-date").val(),
+                    "time": $("#schedule-time").val(),
+                    "movie-id": $(".movie-id-field").val(),
+                }
+            }
         )
     }
+
+    getCinemaList();
+
+    $("#schedule-cinema").change(() => {
+        if ($("schedule-cinema").val() !== "not-selected") {
+            getTheaterList();
+            $("#schedule-theater").attr("disabled", false);
+        }
+        else {
+            $("#schedule-theater").attr("disabled", true);
+        }
+
+    })
 
     getMovieList();
 
@@ -231,4 +315,8 @@ $(document).ready(() => {
     $("#modal-delete-movie-btn").click(() => {
         deleteMovie();
     });
+
+    $("#modal-add-schedule-movie-btn").click(() => {
+        addMovieToSchedule();
+    })
 });

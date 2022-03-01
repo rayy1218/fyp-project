@@ -183,4 +183,6 @@ $(document).ready(() => {
     $("#modal-delete-scheduled-movie-btn").click(() => {
         window.location.reload();
     });
+
+
 });

@@ -230,12 +230,12 @@
             <form id="schedule-add-movie-form" action="" method="get">
               <div class="mb-3">
                 <select class="form-select" id="schedule-cinema" name="cinema" aria-label="Cinema">
-                  <option selected>Select Cinema</option>
+                  <option value="not-selected" selected>Select Cinema</option>
                 </select>
               </div>
               <div class="mb-3">
                 <select class="form-select" id="schedule-theater" name="theater" aria-label="Theater" disabled>
-                  <option selected>Select Theater</option>
+                  <option value="not-selected" selected>Select Theater</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -256,7 +256,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" form="schedule-add-movie-form">Save changes</button>
+            <button type="submit" class="btn btn-primary" id="modal-add-schedule-movie-btn">Save changes</button>
           </div>
         </div>
       </div>
