@@ -1,4 +1,64 @@
 $(document).ready(() => {
+    class HorizonCarouselList {
+        constructor(item_list) {
+            this.items = [];
+            for (let item of item_list) {
+                this.items.push(new MovieCard(item));
+            }
+        }
+
+        html() {
+            let first = true, html = "", i = 0;
+            while (i < this.items.length) {
+                html += `
+                  <div class="carousel-item ${(first) ? " active" : ""}">
+                   <div class="row p-2">
+                `;
+
+                for (let j = 1; j <= 3; j += 1) {
+                    if (i >= this.items.length) {break;}
+                    html += this.items[i].html();
+
+                    i += 1;
+                }
+
+                html += `
+                  </div>
+                 </div>
+                `;
+                first = false;
+            }
+
+            return html;
+        }
+    }
+
+    class MovieCard {
+        constructor(item) {
+            this.movie_id = item.movie_id, this.movie_title = item.movie_title, this.movie_thumbnail = item.movie_thumbnail;
+        }
+
+        html() {
+            let html = "";
+            html += `
+              <div class="col-lg-4 mb-2">
+                <div class="card">
+                  <img src="${this.movie_thumbnail}" class="card-img-top" alt="movie-thumbnail"/>
+                  <div class="card-body">
+                    <h6 class="card-title">${this.movie_title}</h6>
+                    <div class="row">
+                      <a href="/src/movie-detail.html?movie-id=${this.movie_id}" class="btn btn-outline-primary col">Detail</a>
+                      <a href="/src/ticket-purchase.html?movie-id=${this.movie_id}" class="btn btn-outline-secondary col">Book</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            return html;
+        }
+    }
+
     function getPromotedMovie() {
         $.ajax(
             //return movie with movie_id, movie_thumbnail
@@ -157,40 +217,8 @@ $(document).ready(() => {
     }
 
     function printCarousel(result, id) {
-        let first = true, appending = "", i = 0;
-        while (i < result.length) {
-            appending += `
-              <div class="carousel-item ${(first) ? " active" : ""}">
-                <div class="row p-2">
-            `;
-
-            for (let j = 1; j <= 3; j += 1) {
-                if (i >= result.length) {break;}
-                const row = result[i];
-                appending += `
-                  <div class="col-lg-4 mb-2">
-                    <div class="card">
-                      <img src="${row.movie_thumbnail}" class="card-img-top" alt="movie-thumbnail"/>
-                      <div class="card-body">
-                        <h6 class="card-title">${row.movie_title}</h6>
-                        <div class="row">
-                          <a href="./src/movie-detail.html?movie-id=${row.movie_id}" class="btn btn-outline-primary col">Detail</a>
-                          <a href="./src/ticket-purchase.html?movie-id=${row.movie_id}" class="btn btn-outline-secondary col">Book</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                `;
-                i += 1;
-            }
-
-            appending += `
-                </div>
-              </div>
-            `;
-            first = false;
-        }
-        $(`#${id}`).html(appending);
+        let carousel = new HorizonCarouselList(result);
+        $(`#${id}`).html(carousel.html());
     }
 
     getPromotedMovie();
