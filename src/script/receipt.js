@@ -4,7 +4,7 @@ $(document).ready(() => {
 
     function getReceipt() {
         $.ajax(
-            `./api/receipt.php?action=get-receipt&ticket_id=${ticket_id}`,
+            `./api/receipt.php?action=get-receipt&ticket-id=${ticket_id}`,
             {
                 success: (response) => {
                     const result = JSON.parse(response);
@@ -46,7 +46,7 @@ $(document).ready(() => {
 
     $("#send-email-btn").click(function sendEmail() {
         $.ajax(
-            `./api/receipt.php?action=send-email&ticket_id=${ticket_id}`,
+            `./api/receipt.php?action=send-email&ticket-id=${ticket_id}`,
             {
                 success: () => {
                     $("#send-email-btn").html("Sent");
