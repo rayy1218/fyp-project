@@ -16,3 +16,25 @@ VALUES
     '2001-01-01'
 );
 
+INSERT INTO Movies (movie_title, movie_duration, movie_description, movie_thumbnail, movie_genre, movie_language, movie_censorship_rating, movie_rating)
+VALUES
+(
+    'Movie_1',
+    '123',
+    'Movie_Desc',
+    'Thumbnail',
+    'Action',
+    'English',
+    'PG',
+    '8.7',
+),
+(
+    'Movie_2',
+    '124',
+    'Movie_Desc_2',
+    'Thumbnail2',
+    'Action, Thriller',
+    'English',
+    'PG16',
+    '8.8',
+),
