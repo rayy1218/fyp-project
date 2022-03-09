@@ -16,3 +16,12 @@ VALUES
     '2001-01-01'
 );
 
+INSERT INTO Cinema (cinema_address, cinema_status)
+VALUES ('First Cinema', 'on');
+
+INSERT INTO Theater (cinema_id, theater_name, theater_status)
+VALUES
+    (1, 'Theater 1', 'on'),
+    (1, 'Theater 2', 'on')
+;
+
