@@ -54,7 +54,6 @@ CREATE TABLE IF NOT EXISTS Scheduled_Movie (
     employee_id INT NOT NULL,
     scheduled_movie_showing_date DATE NOT NULL,
     scheduled_movie_start_time TIME NOT NULL,
-    scheduled_movie_end_time TIME NOT NULL,
     scheduled_movie_price DECIMAL(2, 2) NOT NULL,
     PRIMARY KEY (scheduled_movie_id),
     FOREIGN KEY (theater_id) REFERENCES Theater(theater_id),
@@ -65,11 +64,12 @@ CREATE TABLE IF NOT EXISTS Scheduled_Movie (
 CREATE TABLE IF NOT EXISTS Seat (
     seat_id INT NOT NULL AUTO_INCREMENT,
     scheduled_movie_id INT NOT NULL,
+    ticket_id INT NOT NULL,
     seat_row INT NOT NULL,
     seat_column INT NOT NULL,
-    seat_is_reserved BOOLEAN NOT NULL,
     PRIMARY KEY (seat_id),
-    FOREIGN KEY (scheduled_movie_id) REFERENCES Scheduled_Movie(scheduled_movie_id)
+    FOREIGN KEY (scheduled_movie_id) REFERENCES Scheduled_Movie(scheduled_movie_id),
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id)
 );
 
 CREATE TABLE IF NOT EXISTS Ticket (
