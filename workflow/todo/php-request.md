@@ -128,7 +128,7 @@
     - query all scheduled_movie with same cinema_id
     - return object["scheduled_movie_id, movie_title, scheduled_movie_showing_date, scheduled_movie_showing_date, 
       scheduled_movie_starting_time, movie_duration"]
-
+  - action="add-scheduled-movie" GET
 
 - dashboard.php (dashboard.js)
   - action="watched-history" GET

@@ -11,7 +11,7 @@
         function getMovieList() {
             $.ajax(
                 //HERE IS THE PHP LINK THE SITE WILL REQUEST TO
-                "./api/movie-crud.php",
+                "./api/movie.php",
                 {
                     success: (response) => {
                         let result = JSON.parse(response);
@@ -73,7 +73,7 @@
     }
     ```
     ```php
-    #movie-crud.php
+    #movie.php
     <?php
     include "connection.php";
     
