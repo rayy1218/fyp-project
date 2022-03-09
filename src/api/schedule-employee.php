@@ -2,6 +2,8 @@
 include "connection.php";
 include "crud.php";
 
+const MAX_ROW = 5, MAX_COL = 8;
+
 switch ($_GET["action"]) {
     case "get-scheduled-movie":
         $statement = mysqli_prepare($conn,
@@ -41,8 +43,24 @@ switch ($_GET["action"]) {
             "
             );
             mysqli_stmt_bind_param($statement, "iiiss", $_GET["movie-id"], $_GET["theater-id"], $row["employee_id"], $_GET["date"], $_GET["time"]);
-
             set($statement);
+
+            $statement = mysqli_prepare($conn, "SELECT scheduled_movie_id FROM Scheduled_Movie ORDER BY scheduled_movie_id DESC LIMIT 1;");
+            $result = readFirst($statement, true);
+            $row = mysqli_fetch_assoc($result);
+            $scheduled_movie_id = $row["scheduled_movie_id"];
+
+            $statement = mysqli_prepare($conn,
+                "
+                INSERT INTO Seat(scheduled_movie_id, seat_row, seat_column) 
+                VALUES (?, ?, ?)   
+            ");
+            for ($row = 1; $row <= MAX_ROW; $row += 1) {
+                for ($col = 1; $col <= MAX_COL; $col += 1) {
+                    mysqli_stmt_bind_param($statement, "iii", $scheduled_movie_id, $row, $col);
+                    set($statement);
+                }
+            }
         }
         else {
             header("HTTP/1.1 403 Forbidden");
