@@ -16,6 +16,15 @@ VALUES
     '2001-01-01'
 );
 
+INSERT INTO Cinema (cinema_address, cinema_status)
+VALUES ('First Cinema', 'on');
+
+INSERT INTO Theater (cinema_id, theater_name, theater_status)
+VALUES
+    (1, 'Theater 1', 'on'),
+    (1, 'Theater 2', 'on')
+;
+
 INSERT INTO Movies (movie_title, movie_duration, movie_description, movie_thumbnail, movie_genre, movie_language, movie_censorship_rating, movie_rating)
 VALUES
 (
