@@ -33,7 +33,7 @@
   - action="promoted-movie" GET
     - TBD
   - action="recent-movie" GET
-    - return array[9] of object["movie_thumbnail, movie_id, movie_title"] sort by movie_added_time
+    - return array[9] of object["movie_thumbnail, movie_id, movie_title"] sort by movie_id
   - action="movie-today" GET
     - return array[9] of object["movie_thumbnail, movie_id, movie_title"] from scheduled movie where movie_showing_date = today
 
