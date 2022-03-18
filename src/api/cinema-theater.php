@@ -11,32 +11,38 @@ else if (isset($_GET["action"])) {
 }
 
 switch ($action) {
-  case "get-cinema-list":
-    $statement = mysqli_prepare($conn,
+  case "get-cinema-list": // GET
+    $statement = mysqli_prepare($conn,"
     ");
     
     mysqli_stmt_bind_param($statement, "si", $_GET["cinema_address"], $_GET["cinema_id"]);
     read($statement);
     break;
                                 
-  case "get-theater-list":
-    $statement = mysqli_prepare($conn,
+  case "get-theater-list": //GET
+    $statement = mysqli_prepare($conn,"
     ");
     
     mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
     read($statement);
     break;   
     
-  case "add-cinema": //dont want maybe below there one
+  case "add-cinema": //POST
+    session_start();
     $statement = mysqli_prepare($conn,
-    ");
+        "
+                    SELECT Employee.employee_id FROM Member JOIN Employee 
+                    ON Member.member_id = Employee.member_id AND Member.member_username = ?
+        ");
     
     mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
     read($statement);
+        
+        
     break;
     
-  case "add-cinema": //dont want maybe below there one
-    $statement = mysqli_prepare($conn,
+  case "add-theater": //POST
+    $statement = mysqli_prepare($conn,"
     ");
     
     mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
