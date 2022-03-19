@@ -31,7 +31,7 @@ switch ($_GET["action"]) {
         FROM Scheduled_Movie
         JOIN Theater ON Scheduled_Movie.theater_id = Theater.theater_id
         JOIN Cinema ON Theater.cinema_id = Cinema.cinema_id
-        WHERE movie_id = ?, cinema_id = ?, scheduled_movie_showing_date >= ? 
+        WHERE movie_id = ? AND cinema_id = ? AND scheduled_movie_showing_date >= ? 
     ");
     
     mysqli_stmt_bind_param($statement, "ii", $_GET["movie_id"], $_GET["cinema_id"]);
@@ -45,7 +45,7 @@ switch ($_GET["action"]) {
         FROM Scheduled_Movie
         JOIN Theater ON Scheduled_Movie.theater_id = Theater.theater_id
         JOIN Cinema ON Theater.cinema_id = Cinema.cinema_id
-        WHERE movie_id = ?, cinema_id = ?, scheduled_movie_showing_date >= ?, scheduled_movie_starting_time >= ?
+        WHERE movie_id = ? AND cinema_id = ? AND scheduled_movie_showing_date >= ? AND scheduled_movie_starting_time >= ?
     ");
     
     mysqli_stmt_bind_param($statement, "id", $_GET["movie_id"], $_GET["scheduled_movie_showing_date"]);
@@ -59,7 +59,7 @@ switch ($_GET["action"]) {
         FROM Scheduled_Movie
         JOIN Theater ON Scheduled_Movie.theater_id = Theater.theater_id
         JOIN Cinema ON Theater.cinema_id = Cinema.cinema_id
-        WHERE movie_id = ?, cinema_id = ?, scheduled_movie_showing_date >= ?, scheduled_movie_starting_time >= ?
+        WHERE movie_id = ? AND cinema_id = ? AND scheduled_movie_showing_date >= ? AND scheduled_movie_starting_time >= ?
     ");                           
     mysqli_stmt_bind_param($statement, "id", $_GET["movie_id"], $_GET["scheduled_movie_showing_date"], $_GET["scheduled_movie_showing_time"]);
     read($statement);
