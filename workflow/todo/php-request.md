@@ -69,18 +69,9 @@
     - data = "movie_id"
     - query scheduled_movie with same movie_id && same scheduled-movie-showing-date >= today &&
       scheduled_movie_starting_time > now and return array of object["cinema_id, cinema_name"]
-  - action="get-date-list" GET
-    - data = "movie_id" "cinema_id"
-    - query scheduled_movie with same movie_id && same cinema_id && scheduled-movie-showing-date >= today and
-      return array of object["scheduled_movie_showing_date"]
-  - action="get-time-list" GET
-    - data = "movie_id" "scheduled_movie_showing_date"
-    - query scheduled_movie with same movie_id && same cinema_id && same scheduled-movie-showing-date  &&
-      scheduled_movie_starting_time > now and return array of object["scheduled_movie_showing_time"]
   - action="get-scheduled-movie" GET
-    - data = "movie_id" "scheduled_movie_showing_date" "scheduled_movie_showing_time"
-    - query scheduled_movie with same movie_id && same cinema_id && same scheduled-movie-showing-date &&
-      same scheduled_movie_starting_time and return object["scheduled_movie_id"]
+    - data = "movie_id" "cinema_id"
+    - query scheduled_movie with same movie_id && same cinema_id && datetime >= now sort by date then time return object["scheduled_movie_id, scheduled_movie_showing_date, scheduled_movie_start_time"]
   - action="get-seat" GET
     - data = "scheduled_movie_id" 
     - query seat with same scheduled_movie_id sort by seat_row then seat_col 
