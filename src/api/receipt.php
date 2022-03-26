@@ -1,6 +1,7 @@
 <?php
 include "connection.php";
 include "crud.php";
+include "email.php";
 
 switch ($_GET["action"]) {
     case "get-receipt":
@@ -17,6 +18,7 @@ switch ($_GET["action"]) {
                 JOIN Theater ON Scheduled_Movie.theater_id = Theater.theater_id
                 JOIN Cinema ON Theater.cinema_id = Cinema.cinema_id
                 JOIN Member ON Ticket.member_id = Member.member_id
+                WHERE ticket_id = ?
         ");
 
         mysqli_stmt_bind_param($statement, "i", $_GET["ticket-id"]);
@@ -35,15 +37,6 @@ switch ($_GET["action"]) {
         $row = mysqli_fetch_assoc($result);
         $to = $row["member_email"];
         $subject="Ticket Purchase";
-        $from="Cinema Website";
-
-        $header =
-            "MIME-Version: 1.0\r\n" .
-            "Content-Type: text/html\r\n" .
-            "From: " . $from . "\r\n" .
-            "Reply-To: " . $from . "\r\n" .
-            "X-Mailer: PHP/" . phpversion() . "\r\n"
-        ;
 
         $href = "localhost/src/receipt.html?action=get-receipt&ticket-id=" . $_GET["ticket-id"];
         $msg = "
@@ -55,7 +48,7 @@ switch ($_GET["action"]) {
             </html>
         ";
 
-        mail($to, $subject, $msg, $header);
+        email($to, $subject, $msg);
 
         break;
 }
