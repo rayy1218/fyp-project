@@ -25,25 +25,126 @@ VALUES
     (1, 'Theater 2', 'on')
 ;
 
-INSERT INTO Movies (movie_title, movie_duration, movie_description, movie_thumbnail, movie_genre, movie_language, movie_censorship_rating, movie_rating)
+INSERT INTO Movie (movie_title, movie_duration, movie_description, movie_thumbnail, movie_genre, movie_language, movie_censorship_rating, movie_rating)
 VALUES
 (
     'Movie_1',
-    '123',
+    '120',
     'Movie_Desc',
-    'Thumbnail',
+    '/src/resource/no-image.png',
     'Action',
     'English',
     'PG',
-    '8.7',
+    '8.7'
 ),
 (
     'Movie_2',
     '124',
     'Movie_Desc_2',
-    'Thumbnail2',
+    '/src/resource/no-image.png',
     'Action, Thriller',
     'English',
     'PG16',
-    '8.8',
+    '8.8'
 ),
+(
+    'Movie_3',
+    '123',
+    'Movie_Desc',
+    '/src/resource/no-image.png',
+    'Action',
+    'English',
+    'PG',
+    '8.7'
+),
+(
+    'Movie_4',
+    '124',
+    'Movie_Desc_2',
+    '/src/resource/no-image.png',
+    'Action, Thriller',
+    'English',
+    'PG16',
+    '8.8'
+),
+(
+    'Movie_5',
+    '123',
+    'Movie_Desc',
+    '/src/resource/no-image.png',
+    'Action',
+    'English',
+    'PG',
+    '8.7'
+),
+(
+    'Movie_6',
+    '124',
+    'Movie_Desc_2',
+    '/src/resource/no-image.png',
+    'Action, Thriller',
+    'English',
+    'PG16',
+    '8.8'
+),
+(
+    'Movie_7',
+    '123',
+    'Movie_Desc',
+    '/src/resource/no-image.png',
+    'Action',
+    'English',
+    'PG',
+    '8.7'
+),
+(
+    'Movie_8',
+    '124',
+    'Movie_Desc_2',
+    '/src/resource/no-image.png',
+    'Action, Thriller',
+    'English',
+    'PG16',
+    '8.8'
+),
+(
+    'Movie_9',
+    '123',
+    'Movie_Desc',
+    '/src/resource/no-image.png',
+    'Action',
+    'English',
+    'PG',
+    '8.7'
+),
+(
+    'Movie_10',
+    '124',
+    'Movie_Desc_2',
+    '/src/resource/no-image.png',
+    'Action, Thriller',
+    'English',
+    'PG16',
+    '8.8'
+),
+(
+    'Movie_11',
+    '123',
+    'Movie_Desc',
+    '/src/resource/no-image.png',
+    'Action',
+    'English',
+    'PG',
+    '8.7'
+),
+(
+    'Movie_12',
+    '124',
+    'Movie_Desc_2',
+    '/src/resource/no-image.png',
+    'Action, Thriller',
+    'English',
+    'PG16',
+    '8.8'
+)
+
