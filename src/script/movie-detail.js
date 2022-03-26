@@ -41,5 +41,7 @@ $(document).ready(() => {
         }
     }
 
+    $("#book-btn").attr("href", `/src/ticket-purchase.html?movie-id=${movie_id}`);
+
     getDetail();
 });
