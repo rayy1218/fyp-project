@@ -5,59 +5,11 @@ $(document).ready(() => {
             "/src/api/dashboard.php?action=watched-history",
             {
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
+                    if (response.length === 0) {
+                        $("#watched-history-placeholder").html("<div class='fs-2 my-5 text-center'>No Watched Movie</div>")
+                    }
                 },
-                error: () => {
-                    const result = [
-                        {
-                            movie_id: 0,
-                            movie_title: "Movie 1",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 1,
-                            movie_title: "Movie 2",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 2,
-                            movie_title: "Movie 3",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 3,
-                            movie_title: "Movie 4",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 4,
-                            movie_title: "Movie 5",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 5,
-                            movie_title: "Movie 6",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 6,
-                            movie_title: "Movie 7",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 7,
-                            movie_title: "Movie 8",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 8,
-                            movie_title: "Movie 9",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                    ];
-                    print(result);
-                }
             }
         );
 
@@ -105,67 +57,10 @@ $(document).ready(() => {
             "/src/api/dashboard.php?action=purchased-ticket",
             {
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
-                },
-                error: () => {
-                    const result = [
-                        {
-                            ticket_id: 0,
-                            movie_id: 0,
-                            movie_title: "Movie 1",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 1,
-                            movie_id: 1,
-                            movie_title: "Movie 2",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 2,
-                            movie_id: 2,
-                            movie_title: "Movie 3",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 3,
-                            movie_id: 3,
-                            movie_title: "Movie 4",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 4,
-                            movie_id: 4,
-                            movie_title: "Movie 5",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 5,
-                            movie_id: 5,
-                            movie_title: "Movie 6",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 6,
-                            movie_id: 6,
-                            movie_title: "Movie 7",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 7,
-                            movie_id: 7,
-                            movie_title: "Movie 8",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            ticket_id: 8,
-                            movie_id: 8,
-                            movie_title: "Movie 9",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                    ];
-                    print(result);
+                    print(response);
+                    if (response.length === 0) {
+                        $("#purchased-ticket-placeholder").html("<div class='fs-2 my-5 text-center'>No Purchased Ticket</div>")
+                    }
                 }
             }
         );

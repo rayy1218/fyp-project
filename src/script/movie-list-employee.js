@@ -7,8 +7,7 @@ $(document).ready(() => {
                     action: "get-cinema-list",
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     const result = [
@@ -20,12 +19,11 @@ $(document).ready(() => {
         );
 
         function print(result) {
-            let append = "";
+            let html = "<option value=\"not-selected\" selected>Select Cinema</option>";
             for (let row of result) {
-                append += `<option value="${row.cinema_id}">${row.cinema_address}</option>`
+                html += `<option value="${row.cinema_id}">${row.cinema_address}</option>`
             }
-            console.log(append);
-            $("#schedule-cinema").append(append);
+            $("#schedule-cinema").html(html);
         }
     }
 
@@ -38,8 +36,7 @@ $(document).ready(() => {
                     "cinema-id": $("#schedule-cinema").val()
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     const result = [
@@ -52,11 +49,11 @@ $(document).ready(() => {
         );
 
         function print(result) {
-            let append = "";
+            let html = "<option value=\"not-selected\" selected>Select Theater</option>";
             for (let row of result) {
-                append += `<option value="${row.theater_id}">${row.theater_name}</option>`
+                html += `<option value="${row.theater_id}">${row.theater_name}</option>`
             }
-            $("#schedule-theater").append(append);
+            $("#schedule-theater").html(html);
         }
     }
 

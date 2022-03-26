@@ -62,11 +62,10 @@ $(document).ready(() => {
     function getPromotedMovie() {
         $.ajax(
             //return movie with movie_id, movie_thumbnail
-            "homepage.php?action=promoted-movie",
+            "/src/api/homepage.php?action=promoted-movie",
             {
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     const result = [
@@ -100,11 +99,13 @@ $(document).ready(() => {
 
     function getRecentMovie() {
         $.ajax(
-            "homepage.php?action=recent-movie",
+            "/src/api/homepage.php?action=recent-movie",
             {
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    printCarousel(result, "recent-movie-placeholder");
+                    printCarousel(response, "recent-movie-placeholder");
+                    if (response.length === 0) {
+                        $("#recent-movie-placeholder").html("<div class='fs-2 my-5 text-center'>No Recent Movie</div>")
+                    }
                 },
                 error: () => {
                     const result = [
@@ -156,11 +157,13 @@ $(document).ready(() => {
     }
 
     function getMovieToday() {
-        $.ajax("homepage.php?action=movie-today",
+        $.ajax("/src/api/homepage.php?action=movie-today",
             {
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    printCarousel(result, "movie-today-placeholder");
+                    printCarousel(response, "movie-today-placeholder");
+                    if (response.length === 0) {
+                        $("#movie-today-placeholder").html("<div class='fs-2 my-5 text-center'>No Movie Today</div>")
+                    }
                 },
                 error: () => {
                     const result = [
@@ -217,8 +220,9 @@ $(document).ready(() => {
     }
 
     function printCarousel(result, id) {
-        let carousel = new HorizonCarouselList(result);
-        $(`#${id}`).html(carousel.html());
+        let carousel = new HorizonCarouselList(result)
+        let html = carousel.html()
+        $(`#${id}`).html(html)
     }
 
     getPromotedMovie();

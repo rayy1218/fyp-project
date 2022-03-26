@@ -7,8 +7,7 @@ $(document).ready(() => {
                     action: "get-cinema-list",
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     const result = [
@@ -31,17 +30,17 @@ $(document).ready(() => {
     }
 
     function getScheduledMovie() {
+        console.log($("#schedule-cinema-select option:selected").val())
         $.ajax(
             "./api/schedule-employee.php",
             {
                 type: "GET",
                 data: {
                     action: "get-scheduled-movie",
-                    cinema_id: $("#cinema-placeholder option:selected").val(),
+                    "cinema-id": $("#schedule-cinema-select option:selected").val(),
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     const random = Math.floor(Math.random() * (27 - 1) + 1);
@@ -135,7 +134,7 @@ $(document).ready(() => {
                     <div class="row">
                       <div class="col">
                         <p class="fw-bold m-0">${row.movie_title}</p>
-                        <p class="m-0">Start Time: ${row.scheduled_movie_starting_time} Duration: ${row.movie_duration}</p>
+                        <p class="m-0">Start Time: ${row.scheduled_movie_start_time} Duration: ${row.movie_duration} minutes </p>
                       </div>
                       <div class="col-auto">
                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#edit-scheduled-movie-modal" data-bs-scheduled-movie-id="${row.scheduled_movie_id}">Edit</button>

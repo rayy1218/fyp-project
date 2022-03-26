@@ -7,8 +7,7 @@ $(document).ready(() => {
                     action: "get-cinema-list",
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     const result = [
@@ -40,11 +39,10 @@ $(document).ready(() => {
                 type: "GET",
                 data: {
                     action: "get-theater-list",
-                    cinema_id: cinema_id,
+                    "cinema-id": cinema_id,
                 },
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    print(result);
+                    print(response);
                 },
                 error: () => {
                     let result = [], random = Math.ceil(Math.random() * (4 - 1) + 1);
@@ -75,7 +73,7 @@ $(document).ready(() => {
                 type: "GET",
                 data: {
                     action: "add-cinema",
-                    cinema_address: $("#add-cinema-address").val(),
+                    "cinema-address": $("#add-cinema-address").val(),
                 },
                 success: () => {
                     window.location.reload();
@@ -97,8 +95,8 @@ $(document).ready(() => {
                 type: "GET",
                 data: {
                     action: "add-theater",
-                    cinema_id: cinema_id,
-                    theater_name: $("#add-theater-name").val(),
+                    "cinema-id": cinema_id,
+                    "theater-name": $("#add-theater-name").val(),
                 },
                 success: () => {
                     window.location.reload();
