@@ -1,7 +1,10 @@
+const URLSearch = new URLSearchParams(window.location.search)
+const token = URLSearch.get("token")
+
 $(document).ready(() => {
     function login() {
         $.ajax(
-            `./api/login.php`,
+            `/src/api/login.php`,
             {
                 type: "POST",
                 data: {
@@ -10,7 +13,7 @@ $(document).ready(() => {
                     password: $("#psw").val()
                 },
                 success: (response) => {
-                    respond(response);
+                    respond(response)
                 },
             }
         );
@@ -27,30 +30,30 @@ $(document).ready(() => {
                             success: (response) => {
                                 switch (response["status"]) {
                                     case "employee":
-                                        window.location.href = "/src/dashboard1-employee.html";
-                                        break;
+                                        window.location.href = "/src/dashboard1-employee.html"
+                                        break
                                     case "member":
-                                        window.location.href = "/src/dashboard.html";
+                                        window.location.href = "/src/dashboard.html"
                                 }
                             },
                         }
                     );
-                    break;
+                    break
 
                 case "username-failure":
-                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Username failure</div>');
-                    break;
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Username failure</div>')
+                    break
 
                 case "password-failure":
-                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Password failure</div>');
-                    break;
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Password failure</div>')
+                    break
             }
         }
     }
 
     function register() {
         $.ajax(
-            "./api/login.php",
+            "/src/api/login.php",
             {
                 type: "POST",
                 data: {
@@ -63,38 +66,104 @@ $(document).ready(() => {
                 },
 
                 success: (response) => {
-                    const result = JSON.parse(response);
-                    respond(result);
+                    respond(response)
                 },
             }
         );
 
         function respond(result) {
+            console.log(result.status)
             switch (result.status) {
                 case "success":
-                    window.location.href = "login.html";
+                    window.location.href = "login.html"
                     break;
 
                 case "password-format-failure":
-                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Password Format Failure</div>');
-                    break;
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Password Format Failure</div>')
+                    break
 
                 case "re-password-failure":
-                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Re-entered password did not match</div>');
-                    break;
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Re-entered password did not match</div>')
+                    break
 
                 case "username-failure":
-                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Username existed</div>');
-                    break;
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Username existed</div>')
+                    break
+            }
+        }
+    }
+
+    function sendResetPassMail() {
+        $.ajax(
+            "/src/api/login.php",
+            {
+                type: "POST",
+                data: {
+                    action: "forget-password",
+                    username: $("#uname").val()
+                },
+                success: (response) => {
+                    respond(response)
+                }
+            }
+        )
+
+        function respond(response) {
+            switch (response["status"]) {
+                case "success":
+                    $("#error-placeholder").html(`<div class="alert alert-success" role="alert">Please check your email for reset password request</div>`)
+                    break
+
+                case "username-failure":
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Username not existed</div>')
+                    break
+            }
+        }
+    }
+
+    function resetPassword() {
+        $.ajax(
+            "/src/api/login.php",
+            {
+                type: "POST",
+                data: {
+                    action: "reset-password",
+                    password: $("#password").val(),
+                    token: token
+                },
+                success: (response) => {
+                    respond(response)
+                }
+            }
+        )
+
+        function respond(response) {
+            console.log(response)
+            switch(response["status"]) {
+                case "success":
+                    $("#error-placeholder").html(`<div class="alert alert-success" role="alert">Password was reset</div>`)
+                    break
+
+                case "token-failure":
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Token was not valid</div>')
+                    break
             }
         }
     }
 
     $("#register-btn").click(() => {
-       register();
-    });
+       register()
+    })
 
     $("#login-btn").click(() => {
-       login();
-    });
+       login()
+    })
+
+    $("#send-request-btn").click(() => {
+        sendResetPassMail()
+    })
+
+    $("#reset-password-btn").click(() => {
+        resetPassword()
+    })
 });
