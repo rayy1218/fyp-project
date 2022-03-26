@@ -53,44 +53,19 @@
 </header>
 
 <div class="container mt-3 content">
-  <form action="" method="get" class="d-none" id="cinema-form">
-    <div class="row m-2">
-      <div class="col-auto d-flex align-items-center">
-        <label for="cinema-list-placeholder">Cinema</label>
-      </div>
-      <div class="col">
-        <select class="form-select" aria-label="Select Cinema" id="cinema-list-placeholder" name="cinema-id">
-
-        </select>
-      </div>
+  <div class="row m-2" id="cinema-form">
+    <div class="col-auto d-flex align-items-center">
+      <label for="cinema-list-placeholder">Cinema</label>
     </div>
-  </form>
+    <div class="col">
+      <select class="form-select" aria-label="Select Cinema" id="cinema-list-placeholder" name="cinema-id">
 
-  <form class="d-none" id="date-form">
-    <div class="row m-2">
-      <div class="col-2">
-        <label for="date-radio-group">Date</label>
-      </div>
-      <div class="col-10" id="date-radio-group">
-
-      </div>
+      </select>
     </div>
-  </form>
+  </div>
 
-  <form class="d-none" id="time-form">
-    <div class="row m-2">
-      <div class="col-2">
-        <label for="time-radio-group">Time</label>
-      </div>
-      <div class="col-10" id="time-radio-group">
+  <div class="d-flex flex-wrap flex-row" id="scheduled-movie-placeholder">
 
-      </div>
-    </div>
-  </form>
-
-  <div class="row">
-    <div class="col-auto"><button type="submit" class="btn btn-primary" id="submit-btn" form="cinema-form">Next</button></div>
-    <div class="col-auto"><button class="btn btn-outline-primary" onClick="history.back()">Back</button></div>
   </div>
 </div>
 

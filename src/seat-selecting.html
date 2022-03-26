@@ -52,7 +52,7 @@
 	<hr class="m-0" />
 </header>
 <div class="container mt-3 content">
-	<form id="seat-form" action="./payment.html" method="get">
+	<form id="seat-form">
 		<div class="row m-2">
 			<div class="col-2">
 				<label for="seat-check-group">Seat</label>
@@ -88,8 +88,8 @@
 	</form>
 
 	<div class="row">
-		<div class="col-auto"><button type="submit" form="seat-form" class="btn btn-primary" id="submit-btn">Next</button></div>
-		<div class="col-auto"><button class="btn btn-outline-primary" onClick="history.go(-2)">Back</button></div>
+		<div class="col-auto"><button type="button" class="btn btn-primary" id="submit-btn">Next</button></div>
+		<div class="col-auto"><button class="btn btn-outline-primary" onClick="history.go(-1)">Back</button></div>
 	</div>
 </div>
 
