@@ -146,6 +146,7 @@ switch ($action) {
         $ret->ticket_status = $row["ticket_status"];
         header("Content-Type: application/json");
         echo json_encode($ret);
+        break;
 }
 
 
