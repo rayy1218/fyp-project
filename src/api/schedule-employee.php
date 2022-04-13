@@ -23,6 +23,38 @@ switch ($_GET["action"]) {
 
         break;
 
+    case "get-scheduled-movie-data":
+        $statement = mysqli_prepare($conn, "
+            SELECT cinema_id, cinema_address, theater_id, theater_name, scheduled_movie_showing_date, scheduled_movie_start_time FROM Scheduled_Movie 
+            JOIN Theater USING (theater_id)
+            JOIN Cinema USING (cinema_id)
+            WHERE scheduled_movie_id = ?
+        ");
+
+        mysqli_stmt_bind_param($statement, "i", $_GET["scheduled-movie-id"]);
+
+        readFirst($statement);
+
+        break;
+
+    case "get-theater-list":
+        $statement = mysqli_prepare($conn, "
+            SELECT theater_id, theater_name FROM Theater
+            WHERE cinema_id = (
+                SELECT C.cinema_id from Scheduled_Movie
+                JOIN Theater T on T.theater_id = Scheduled_Movie.theater_id
+                JOIN Cinema C on C.cinema_id = T.cinema_id
+                WHERE scheduled_movie_id = ?
+            )
+        ");
+
+        mysqli_stmt_bind_param($statement, "i", $_GET["scheduled-movie-id"]);
+        read($statement);
+
+        break;
+}
+
+switch($_POST["action"]) {
     case "add-scheduled-movie":
         session_start();
         $statement = mysqli_prepare($conn,
@@ -42,7 +74,7 @@ switch ($_GET["action"]) {
                 VALUES (?, ?, ?, ?, ?)
             "
             );
-            mysqli_stmt_bind_param($statement, "iiiss", $_GET["movie-id"], $_GET["theater-id"], $row["employee_id"], $_GET["date"], $_GET["time"]);
+            mysqli_stmt_bind_param($statement, "iiiss", $_POST["movie-id"], $_POST["theater-id"], $row["employee_id"], $_POST["date"], $_POST["time"]);
             set($statement);
 
             $statement = mysqli_prepare($conn, "SELECT scheduled_movie_id FROM Scheduled_Movie ORDER BY scheduled_movie_id DESC LIMIT 1;");
@@ -53,7 +85,7 @@ switch ($_GET["action"]) {
             $statement = mysqli_prepare($conn,
                 "
                 INSERT INTO Seat(scheduled_movie_id, seat_row, seat_column) 
-                VALUES (?, ?, ?)   
+                VALUES (?, ?, ?)
             ");
             for ($row = 1; $row <= MAX_ROW; $row += 1) {
                 for ($col = 1; $col <= MAX_COL; $col += 1) {
@@ -65,5 +97,72 @@ switch ($_GET["action"]) {
         else {
             header("HTTP/1.1 403 Forbidden");
         }
+        break;
+
+    case "edit-scheduled-movie":
+        session_start();
+        $statement = mysqli_prepare($conn,
+            "
+                    SELECT Employee.employee_id FROM Member JOIN Employee 
+                    ON Member.member_id = Employee.member_id AND Member.member_username = ?
+            ");
+        mysqli_stmt_bind_param($statement, "s", $_SESSION["username"]);
+        $result = readFirst($statement, true);
+
+        $row = mysqli_fetch_assoc($result);
+
+        if (isset($row["employee_id"])) {
+            $statement = mysqli_prepare($conn, "
+                UPDATE Scheduled_Movie SET theater_id = ?, scheduled_movie_showing_date = ?, scheduled_movie_start_time = ? WHERE scheduled_movie_id = ?
+            ");
+
+            mysqli_stmt_bind_param($statement, "issi",
+                $_POST["theater-id"], $_POST["scheduled-movie-showing-date"],
+                $_POST["scheduled-movie-start-time"], $_POST["scheduled-movie-id"]
+            );
+
+            update($statement);
+        }
+        else {
+            header("HTTP/1.1 403 Forbidden");
+        }
+
+        break;
+
+    case "delete-scheduled-movie":
+        session_start();
+        $statement = mysqli_prepare($conn,
+            "
+                    SELECT Employee.employee_id FROM Member JOIN Employee 
+                    ON Member.member_id = Employee.member_id AND Member.member_username = ?
+            ");
+        mysqli_stmt_bind_param($statement, "s", $_SESSION["username"]);
+        $result = readFirst($statement, true);
+
+        $row = mysqli_fetch_assoc($result);
+
+        if (isset($row["employee_id"])) {
+            $statement = mysqli_prepare($conn,
+                "DELETE FROM Seat WHERE scheduled_movie_id = ?"
+            );
+            mysqli_stmt_bind_param($statement, "i", $_POST["scheduled-movie-id"]);
+            delete($statement);
+
+            $statement = mysqli_prepare($conn,
+                "DELETE FROM Ticket WHERE scheduled_movie_id = ?"
+            );
+            mysqli_stmt_bind_param($statement, "i", $_POST["scheduled-movie-id"]);
+            delete($statement);
+
+            $statement = mysqli_prepare($conn,
+                "DELETE FROM Scheduled_Movie WHERE scheduled_movie_id = ?"
+            );
+            mysqli_stmt_bind_param($statement, "i", $_POST["scheduled-movie-id"]);
+            delete($statement);
+        }
+        else {
+            header("HTTP/1.1 403 Forbidden");
+        }
+
         break;
 }
