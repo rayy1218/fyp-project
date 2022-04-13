@@ -7,23 +7,17 @@ $(document).ready(() => {
                     action: "get-cinema-list",
                 },
                 success: (response) => {
-                    print(response);
+                    print(response)
                 },
-                error: () => {
-                    const result = [
-                        {cinema_id: 1, cinema_address: "Cinema First"},
-                    ];
-                    print(result);
-                }
             }
-        );
+        )
 
         function print(result) {
-            let html = "<option value=\"not-selected\" selected>Select Cinema</option>";
+            let html = "<option value=\"not-selected\" selected>Select Cinema</option>"
             for (let row of result) {
                 html += `<option value="${row.cinema_id}">${row.cinema_address}</option>`
             }
-            $("#schedule-cinema").html(html);
+            $("#schedule-cinema").html(html)
         }
     }
 
@@ -36,24 +30,17 @@ $(document).ready(() => {
                     "cinema-id": $("#schedule-cinema").val()
                 },
                 success: (response) => {
-                    print(response);
+                    print(response)
                 },
-                error: () => {
-                    const result = [
-                        {theater_id: 1, theater_name: "Theater 1"},
-                        {theater_id: 2, theater_name: "Theater 2"},
-                    ];
-                    print(result);
-                }
             }
-        );
+        )
 
         function print(result) {
-            let html = "<option value=\"not-selected\" selected>Select Theater</option>";
+            let html = "<option value=\"not-selected\" selected>Select Theater</option>"
             for (let row of result) {
                 html += `<option value="${row.theater_id}">${row.theater_name}</option>`
             }
-            $("#schedule-theater").html(html);
+            $("#schedule-theater").html(html)
         }
     }
 
@@ -66,59 +53,13 @@ $(document).ready(() => {
                     action: 'get-movie-list-employee',
                 },
                 success: (response) => {
-                    print(response);
+                    print(response)
                 },
-                error: () => {
-                    //Dummy, should remove after prototype phase
-                    const result = [
-                        {
-                            movie_id: 0,
-                            movie_title: "Movie 1",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 1,
-                            movie_title: "Movie 2",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 2,
-                            movie_title: "Movie 3",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 3,
-                            movie_title: "Movie 4",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 4,
-                            movie_title: "Movie 5",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 5,
-                            movie_title: "Movie 6",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 6,
-                            movie_title: "Movie 7",
-                            movie_duration: 120,
-                        },
-                        {
-                            movie_id: 7,
-                            movie_title: "Movie 8",
-                            movie_duration: 120,
-                        },
-                    ];
-                    print(result);
-                }
             }
-        );
+        )
 
         function print(result) {
-            let append = "";
+            let append = ""
             for (let row of result) {
                 append += `
                     <li class="list-group-item">
@@ -141,10 +82,10 @@ $(document).ready(() => {
                             </div>
                         </div>
                     </li>
-                `;
+                `
             }
 
-            $("#movie-list").html(append);
+            $("#movie-list").html(append)
         }
     }
 
@@ -165,10 +106,10 @@ $(document).ready(() => {
                     "movie-description": $("#add-movie-description").val(),
                 },
                 success: () => {
-                    window.location.reload()
+                    getMovieList()
                 }
             }
-        );
+        )
     }
 
     function fillEditModal() {
@@ -181,30 +122,30 @@ $(document).ready(() => {
                     "movie-id": $("#edit-movie-id-field").val()
                 },
                 success: (response) => {
-                    fill(response);
+                    fill(response)
                 }
             }
         )
 
         function fill(result) {
-            $("#edit-movie-title").val(result["movie_title"]);
-            $("#edit-movie-thumbnail").val(result["movie_thumbnail"]);
-            $("#edit-movie-duration").val(result["movie_duration"]);
-            $("#edit-movie-rating").val(result["movie_rating"]);
-            $("#edit-movie-description").val(result["movie_description"]);
+            $("#edit-movie-title").val(result["movie_title"])
+            $("#edit-movie-thumbnail").val(result["movie_thumbnail"])
+            $("#edit-movie-duration").val(result["movie_duration"])
+            $("#edit-movie-rating").val(result["movie_rating"])
+            $("#edit-movie-description").val(result["movie_description"])
 
-            selectOption("#edit-movie-genre", result["movie_genre"]);
-            selectOption("#edit-movie-language", result["movie_language"]);
-            selectOption("#edit-movie-censorship", result["movie_censorship_rating"]);
+            selectOption("#edit-movie-genre", result["movie_genre"])
+            selectOption("#edit-movie-language", result["movie_language"])
+            selectOption("#edit-movie-censorship", result["movie_censorship_rating"])
         }
 
         function selectOption(select_id, option_to_select) {
             const str = `${select_id} option`
-            const options = $(str);
+            const options = $(str)
 
             for (let option of options) {
                 if (option.value == option_to_select) {
-                    option.setAttribute("selected", true);
+                    option.setAttribute("selected", true)
                 }
             }
 
@@ -229,11 +170,10 @@ $(document).ready(() => {
                     "movie-description": $("#edit-movie-description").val(),
                 },
                 success: () => {
-                    console.log("edit");
-                    window.location.reload()
+                    getMovieList()
                 }
             }
-        );
+        )
     }
 
     function deleteMovie() {
@@ -246,12 +186,8 @@ $(document).ready(() => {
                     "movie-id": $("#delete-movie-id-field").val()
                 },
                 success: () => {
-                    getMovieList();
-                    window.location.reload()
+                    getMovieList()
                 },
-                error: () => {
-
-                }
             },
 
         )
@@ -261,7 +197,7 @@ $(document).ready(() => {
         $.ajax(
             "./api/schedule-employee.php",
             {
-                type: "GET",
+                type: "POST",
                 data: {
                     action: "add-scheduled-movie",
                     "theater-id": $("#schedule-theater").val(),
@@ -273,47 +209,47 @@ $(document).ready(() => {
         )
     }
 
-    getCinemaList();
+    getCinemaList()
 
     $("#schedule-cinema").change(() => {
         if ($("schedule-cinema").val() !== "not-selected") {
-            getTheaterList();
-            $("#schedule-theater").attr("disabled", false);
+            getTheaterList()
+            $("#schedule-theater").attr("disabled", false)
         }
         else {
-            $("#schedule-theater").attr("disabled", true);
+            $("#schedule-theater").attr("disabled", true)
         }
 
     })
 
-    getMovieList();
+    getMovieList()
 
-    const modal = $("#schedule-add-movie-modal, #delete-movie-modal");
+    const modal = $("#schedule-add-movie-modal, #delete-movie-modal")
     modal.on("show.bs.modal", (event) => {
-        const movie_id = event.relatedTarget.getAttribute('data-bs-movie-id');
-        $(".movie-id-field").val(movie_id);
-    });
+        const movie_id = event.relatedTarget.getAttribute('data-bs-movie-id')
+        $(".movie-id-field").val(movie_id)
+    })
 
     $("#modal-add-movie-btn").click(() => {
-        addMovie();
-    });
+        addMovie()
+    })
 
     $("#edit-movie-modal").on("show.bs.modal", (event) => {
-        const movie_id = event.relatedTarget.getAttribute('data-bs-movie-id');
-        $("#edit-movie-id-field").val(movie_id);
+        const movie_id = event.relatedTarget.getAttribute('data-bs-movie-id')
+        $("#edit-movie-id-field").val(movie_id)
 
-        fillEditModal();
-    });
+        fillEditModal()
+    })
 
     $("#modal-edit-movie-btn").click(() => {
-        editMovie();
-    });
+        editMovie()
+    })
 
     $("#modal-delete-movie-btn").click(() => {
-        deleteMovie();
-    });
+        deleteMovie()
+    })
 
     $("#modal-add-schedule-movie-btn").click(() => {
-        addMovieToSchedule();
+        addMovieToSchedule()
     })
-});
+})
