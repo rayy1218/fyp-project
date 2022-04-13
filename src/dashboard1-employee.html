@@ -75,7 +75,7 @@
           <button class="btn btn-primary" type="button" id="query-scheduled-movie-btn" disabled>></button>
         </div>
 
-        <div id="scheduled-movie-placeholder"></div>
+        <div class="accordion" id="scheduled-movie-placeholder"></div>
       </div>
   </div>
 
@@ -92,7 +92,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-          <button type="button" class="btn btn-primary" id="modal-delete-scheduled-movie-btn">Yes</button>
+          <button type="button" class="btn btn-primary" id="modal-delete-scheduled-movie-btn" data-bs-dismiss="modal">Yes</button>
         </div>
       </div>
     </div>
@@ -112,12 +112,12 @@
                 <form id="schedule-add-movie-form" action="" method="get">
                   <div class="mb-3">
                     <select class="form-select" id="schedule-cinema" name="cinema" aria-label="Cinema">
-                      <option selected>Select Cinema</option>
+                      <option>Select Cinema</option>
                     </select>
                   </div>
                   <div class="mb-3">
-                    <select class="form-select" id="schedule-theater" name="theater" aria-label="Theater" disabled>
-                      <option selected>Select Theater</option>
+                    <select class="form-select" id="schedule-theater" name="theater" aria-label="Theater">
+                      <option>Select Theater</option>
                     </select>
                   </div>
                   <div class="mb-3">
@@ -139,7 +139,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-          <button type="button" class="btn btn-primary" id="modal-edit-scheduled-movie-btn">Submit</button>
+          <button type="button" class="btn btn-primary" id="modal-edit-scheduled-movie-btn" data-bs-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>
