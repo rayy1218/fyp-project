@@ -1,6 +1,4 @@
 <?php
-include "authentication.php";
-
 header("HTTP/1.1 501 Not Implemented");
 $action = 0;
 if (isset($_POST["action"])) {
@@ -14,9 +12,13 @@ case "promoted-movie":
     //TBD
     break;
 	
-case "movie-today""recent-movie":
-    SELECT TOP 9 movie_thumbnail, movie_id, movie_title FROM Member
-	WHERE scheduled_movie_showing_date  = $date("Y/m/d");
+case "recent-movie":
+	$statement = mysqli_prepare($conn,"
+    SELECT movie_id,movie_title,movie_thumbnail FROM Movie
+	JOIN Movie USING(movie_id)LIMIT 9
+	");
+	mysqli_stmt_bind_param($statement,"s",$movie_id);
+	read($statement);
     break;
 	
 case "movie-today":
