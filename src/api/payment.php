@@ -1,6 +1,7 @@
 <?php
 include "connection.php";
 include "crud.php";
+include "global.php";
 
 $action = 0;
 if (isset($_POST["action"])) {
@@ -77,7 +78,10 @@ switch ($action) {
             )
         ");
 
-        $payment = (int)$_POST["adult-num"] * 5 + (int)$_POST["child-elder-num"] * 4 + (int)$_POST["student-num"] * 3;
+        $payment =
+            (int)$_POST["adult-num"] * ADULT_TICKET_PRICE +
+            (int)$_POST["child-elder-num"] * CHILD_ELDER_TICKET_PRICE +
+            (int)$_POST["student-num"] * STUDENT_PRICE;
 
         $ticket_status = "unpaid";
 
@@ -109,7 +113,7 @@ switch ($action) {
         break;
 
     case "pay-ticket":
-        if ($_POST["token"] == "abc123") {
+        if ($_POST["token"] == $payment_token) {
             $token = "";
 
             $char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
