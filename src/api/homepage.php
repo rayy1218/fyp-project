@@ -14,9 +14,11 @@ case "promoted-movie":
     //TBD
     break;
 	
-case "movie-today""recent-movie":
-    SELECT TOP 9 movie_thumbnail, movie_id, movie_title FROM Member
-	WHERE scheduled_movie_showing_date  = $date("Y/m/d");
+case "recent-movie":
+$statement = mysqli_prepare($conn,"
+    SELECT movie_id, movie_title, movie_thumbnail FROM Scheduled_Movie
+	JOIN Movie USING(movie_id) LIMIT 9
+	");
     break;
 	
 case "movie-today":
