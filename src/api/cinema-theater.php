@@ -11,41 +11,41 @@ else if (isset($_GET["action"])) {
 }
 
 switch ($action) {
-  case "get-cinema-list": // GET
-    $statement = mysqli_prepare($conn,"
-    ");
-    
-    mysqli_stmt_bind_param($statement, "si", $_GET["cinema_address"], $_GET["cinema_id"]);
+  case "get-cinema-list":
+    $statement = mysqli_prepare($conn,"SELECT cinema_id, cinema_address FROM Cinema");
     read($statement);
     break;
                                 
-  case "get-theater-list": //GET
-    $statement = mysqli_prepare($conn,"
-    ");
-    
-    mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
-    read($statement);
-    break;   
-    
-  case "add-cinema": //POST
-    session_start();
+  case "get-theater-list":
     $statement = mysqli_prepare($conn,
         "
-                    SELECT Employee.employee_id FROM Member JOIN Employee 
-                    ON Member.member_id = Employee.member_id AND Member.member_username = ?
-        ");
-    
+            SELECT
+            Theater.theater_id, Theater.theater_name
+            FROM Theater
+            WHERE cinema_id = ?
+    ");
+
     mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
     read($statement);
-        
-        
     break;
     
-  case "add-theater": //POST
-    $statement = mysqli_prepare($conn,"
+  case "add-cinema": 
+    $statement = mysqli_prepare($conn,
+        "
+            INSERT INTO Cinema(cinema_address, cinema_status)
+            VALUES(?, "on")
     ");
     
-    mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
-    read($statement);
+    mysqli_stmt_bind_param($statement, "s", $_GET["cinema_address"]);
+    set($statement);
     break;
-header("HTTP/1.1 501 Not Implemented");
+    
+  case "add-theater": 
+    $statement = mysqli_prepare($conn,
+        "
+        INSERT INTO Theater(theater_name, theater_status, cinema_id) VALUES (?, "on", ?)
+    ");
+    
+    mysqli_stmt_bind_param($statement, "si", $_GET["theater_name"], $_GET["cinema_id"]);
+    set($statement);
+    break;
