@@ -26,7 +26,7 @@ case "movie-today":
 	JOIN Movie USING(movie_id)
 	WHERE scheduled_movie_showing_date = ? LIMIT 9
 	");
-	date_default_timezone_set('Asia/Kuala_Lumur');
+	date_default_timezone_set('Asia/Kuala_Lumpur');
 	$date = date("y/m/d");
 	
 	mysqli_stmt_bind_param($statement,"s",$date);
