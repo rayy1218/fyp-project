@@ -25,7 +25,7 @@ switch ($action) {
             WHERE cinema_id = ?
     ");
 
-        mysqli_stmt_bind_param($statement, "i", $_GET["cinema_id"]);
+        mysqli_stmt_bind_param($statement, "i", $_GET["cinema-id"]);
         read($statement);
         break;
 
@@ -36,7 +36,7 @@ switch ($action) {
             VALUES(?, 'on')
     ");
     
-    mysqli_stmt_bind_param($statement, "s", $_GET["cinema_address"]);
+    mysqli_stmt_bind_param($statement, "s", $_GET["cinema-address"]);
     set($statement);
     break;
 
@@ -46,7 +46,7 @@ switch ($action) {
         INSERT INTO Theater(theater_name, theater_status, cinema_id) VALUES (?, 'on', ?)
     ");
     
-    mysqli_stmt_bind_param($statement, "si", $_GET["theater_name"], $_GET["cinema_id"]);
+    mysqli_stmt_bind_param($statement, "si", $_GET["theater-name"], $_GET["cinema-id"]);
     set($statement);
     break;
 }
