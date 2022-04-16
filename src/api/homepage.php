@@ -1,7 +1,6 @@
 <?php
 include "authentication.php";
 
-header("HTTP/1.1 501 Not Implemented");
 $action = 0;
 if (isset($_POST["action"])) {
     $action = $_POST["action"];
