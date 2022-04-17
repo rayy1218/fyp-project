@@ -3,7 +3,7 @@ include "connection.php";
 include "crud.php";
 include "authentication.php";
 
-switch ($_GET) {
+switch ($_GET["action"]) {
     case 'watched-history':
 		$statement = mysqli_prepare($conn,"
             SELECT movie_id, movie_title, movie_thumbnail FROM Ticket
@@ -13,7 +13,7 @@ switch ($_GET) {
             WHERE member_id = ? ORDER BY scheduled_movie_showing_date DESC LIMIT 9;
 		");
 
-        mysqli_stmt_bind_param($statement,"is",$member_id, $date);
+        mysqli_stmt_bind_param($statement,"i",$member_id);
 		read($statement);
 		break;
 		
@@ -31,5 +31,34 @@ switch ($_GET) {
 	
 		mysqli_stmt_bind_param($statement,"is",$member_id, $date);
 		read($statement);
-		break;		
+		break;
+
+    case "get-username":
+        $ret = new stdClass();
+        $ret->username = $_SESSION["username"];
+        header("Content-Type: application/json");
+        echo json_encode($ret);
+        break;
+
+    case "get-total-count":
+        $statement = mysqli_prepare($conn,
+            "SELECT COUNT(*) AS total FROM Ticket WHERE member_id = ? AND ticket_status = 'watched'"
+        );
+
+        mysqli_stmt_bind_param($statement, "i", $member_id);
+        readFirst($statement);
+        break;
+
+    case "get-month-count":
+        $statement = mysqli_prepare($conn,
+            "
+                SELECT COUNT(*) AS month FROM Ticket JOIN Scheduled_Movie USING (scheduled_movie_id) 
+                WHERE member_id = ? AND ticket_status = 'watched' AND
+                scheduled_movie_showing_date >= DATE(NOW() - INTERVAL 1 MONTH)
+            "
+        );
+
+        mysqli_stmt_bind_param($statement, "i", $member_id);
+        readFirst($statement);
+        break;
 }

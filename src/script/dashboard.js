@@ -103,6 +103,63 @@ $(document).ready(() => {
         }
     }
 
-    getWatchedHistory();
-    getPurchasedTicket();
+    function getUsername() {
+        $.ajax(
+            "/src/api/dashboard.php",
+            {
+                data: {
+                    action: "get-username"
+                },
+                success: (response) => {
+                    print(response)
+                }
+            }
+        )
+
+        function print(response) {
+            $("#username-placeholder").html(response["username"])
+        }
+    }
+
+    function getMonthCount() {
+        $.ajax(
+            "/src/api/dashboard.php",
+            {
+                data: {
+                    action: "get-month-count"
+                },
+                success: (response) => {
+                    print(response)
+                }
+            }
+        )
+
+        function print(response) {
+            $("#movie-month-count").html(response["month"])
+        }
+    }
+
+    function getTotalCount() {
+        $.ajax(
+            "/src/api/dashboard.php",
+            {
+                data: {
+                    action: "get-total-count"
+                },
+                success: (response) => {
+                    print(response)
+                }
+            }
+        )
+
+        function print(response) {
+            $("#movie-total-count").html(response["total"])
+        }
+    }
+
+    getWatchedHistory()
+    getPurchasedTicket()
+    getUsername()
+    getMonthCount()
+    getTotalCount()
 });

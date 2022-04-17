@@ -54,23 +54,18 @@
 
 <div class="container mt-3 content">
   <div class="user-bar border">
-    <div class="row m-1">
-      <div class="col">
-        User: <span class="username-placeholder">user</span>
-      </div>
-      <div class="col-1">
-        Settings
-      </div>
+    <div class="m-1 mx-2">
+        User: <span id="username-placeholder"></span>
     </div>
   </div>
   <div class="row m-0">
     <div class="col border m-2 ms-0">
       <p class="fw-light m-0">Watched movie this month</p>
-      <p class="m-0">3</p>
+      <p class="m-0" id="movie-month-count"></p>
     </div>
     <div class="col border m-2 me-0">
       <p class="fw-light m-0">Total watched movie</p>
-      <p class="m-0">26</p>
+      <p class="m-0" id="movie-total-count"></p>
     </div>
   </div>
 
@@ -87,126 +82,6 @@
       <h4>Watched History</h4>
       <div id="watched-history-carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner px-2" id="watched-history-placeholder">
-          <div class="carousel-item active">
-            <div class="row p-2">
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 1</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 2</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 3</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row p-2">
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 4</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 5</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 6</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row p-2">
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 7</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 8</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 9</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#watched-history-carousel" data-bs-slide="prev" style="width: 1%">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -222,126 +97,7 @@
       <h4>Purchased Ticket</h4>
       <div id="purchased-ticket-carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner px-2" id="purchased-ticket-placeholder">
-          <div class="carousel-item active">
-            <div class="row p-2">
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 1</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 2</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 3</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row p-2">
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 4</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 5</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 6</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row p-2">
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 7</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 8</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 mb-2">
-                <div class="card">
-                  <img src="../resource/no-image.png" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">Movie 9</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html" class="btn btn-outline-secondary col">Book</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#purchased-ticket-carousel" data-bs-slide="prev" style="width: 1%">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
