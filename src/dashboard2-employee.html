@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>Movie Management</title>
 
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="script/movie-list-employee.js"></script>
   <script src="script/search-movie.js"></script>
@@ -71,8 +72,7 @@
     <div class="row mb-3">
       <div class="col">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" aria-label="Search Bar">
-          <button class="btn btn-primary" type="button" onclick="searchMovie()">></button>
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search Bar" id="search-string" />
         </div>
       </div>
       <div class="col-sm-auto mt-sm-0 mt-2">

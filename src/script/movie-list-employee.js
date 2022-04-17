@@ -1,4 +1,6 @@
 $(document).ready(() => {
+    let list = []
+
     function getCinemaList() {
         $.ajax("./api/cinema-theater.php",
             {
@@ -44,24 +46,10 @@ $(document).ready(() => {
         }
     }
 
-    function getMovieList() {
-        $.ajax(
-            //return all_movie with movie_id, movie_title, movie_duration
-            "./api/movie.php",
-            {
-                data: {
-                    action: 'get-movie-list-employee',
-                },
-                success: (response) => {
-                    print(response)
-                },
-            }
-        )
-
-        function print(result) {
-            let append = ""
-            for (let row of result) {
-                append += `
+    function printMovieList(result) {
+        let append = ""
+        for (let row of result) {
+            append += `
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col">
@@ -83,10 +71,54 @@ $(document).ready(() => {
                         </div>
                     </li>
                 `
+        }
+
+        $("#movie-list").html(append)
+    }
+
+    function getMovieList() {
+        $.ajax(
+            //return all_movie with movie_id, movie_title, movie_duration
+            "./api/movie.php",
+            {
+                data: {
+                    action: 'get-movie-list-employee',
+                },
+                success: (response) => {
+                    list = response
+                    printMovieList(response)
+                },
+            }
+        )
+    }
+
+    function search() {
+        const search_string = $("#search-string").val()
+        if (search_string.length > 0) {
+            const options = {
+                isCaseSensitive: false,
+                shouldSort: true,
+                findAllMatches: true,
+                minMatchCharLength: search_string.length,
+                keys: [
+                    "movie_title"
+                ]
             }
 
-            $("#movie-list").html(append)
+            const fuse = new Fuse(list, options)
+
+            let result = fuse.search(search_string)
+            let print_list = [];
+            for (let i = 0; i < result.length; i += 1) {
+                print_list[i] = result[i]["item"]
+            }
+
+            printMovieList(print_list)
         }
+        else {
+            printMovieList(list)
+        }
+
     }
 
     function addMovie() {
@@ -252,4 +284,6 @@ $(document).ready(() => {
     $("#modal-add-schedule-movie-btn").click(() => {
         addMovieToSchedule()
     })
+
+    $("#search-string").on("input", () => {search()})
 })

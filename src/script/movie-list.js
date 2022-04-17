@@ -1,4 +1,6 @@
 $(document).ready(() => {
+    let list = []
+
     function getMovieList() {
         $.ajax(
             //return all movie with movie_id, movie_title, movie_thumbnail
@@ -9,62 +11,48 @@ $(document).ready(() => {
                     action: "get-movie-list",
                 },
                 success: (response) => {
+                    list = response
                     print(response);
-                },
-
-                error: () => {
-                    //Dummy, should remove after prototype phase
-                    const result = [
-                        {
-                            movie_id: 0,
-                            movie_title: "Movie 1",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 1,
-                            movie_title: "Movie 2",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 2,
-                            movie_title: "Movie 3",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 3,
-                            movie_title: "Movie 4",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 4,
-                            movie_title: "Movie 5",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 5,
-                            movie_title: "Movie 6",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 6,
-                            movie_title: "Movie 7",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                        {
-                            movie_id: 7,
-                            movie_title: "Movie 8",
-                            movie_thumbnail: "./resource/no-image.png"
-                        },
-                    ];
-                    print(result);
                 },
             }
         )
 
-        function print(result) {
-            let append = "";
-            for (let row of result) {
-                append += `
+
+    }
+
+    function search() {
+        const search_string = $("#search-string").val()
+        if (search_string.length > 0) {
+            const options = {
+                isCaseSensitive: false,
+                shouldSort: true,
+                findAllMatches: true,
+                minMatchCharLength: search_string.length,
+                keys: [
+                    "movie_title"
+                ]
+            }
+
+            const fuse = new Fuse(list, options)
+
+            let result = fuse.search(search_string)
+            let print_list = [];
+            for (let i = 0; i < result.length; i += 1) {
+                print_list[i] = result[i]["item"]
+            }
+
+            print(print_list)
+        }
+        else {
+            print(list)
+        }
+
+    }
+
+    function print(result) {
+        let append = "";
+        for (let row of result) {
+            append += `
                 <div class="card m-2">
                   <img src="${row.movie_thumbnail}" class="card-img-top" alt="movie-thumbnail"/>
                   <div class="card-body">
@@ -76,11 +64,11 @@ $(document).ready(() => {
                   </div>
                 </div>
               `;
-            }
-
-            $("#movie-list-placeholder").html(append);
         }
+
+        $("#movie-list-placeholder").html(append);
     }
 
     getMovieList();
+    $("#search-string").on("input", () => {search()})
 });
