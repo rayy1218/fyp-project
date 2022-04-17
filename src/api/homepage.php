@@ -17,17 +17,17 @@ case "promoted-movie":
 	
 case "recent-movie":
 	$statement = mysqli_prepare($conn,"
-        SELECT movie_id,movie_title,movie_thumbnail FROM Movie
+        SELECT movie_id, movie_title, movie_thumbnail FROM Movie
         ORDER BY movie_id DESC LIMIT 9
 	");
-	mysqli_stmt_bind_param($statement,"s",$movie_id);
+
 	read($statement);
     break;
 	
 case "movie-today":
 	$statement = mysqli_prepare($conn,"
-        SELECT movie_id,movie_title,movie_thumbnail FROM Scheduled_Movie
-        JOIN Movie USING(movie_id)
+        SELECT movie_id, movie_title, movie_thumbnail FROM Scheduled_Movie
+        JOIN Movie USING (movie_id)
         WHERE scheduled_movie_showing_date = ? LIMIT 9
 	");
 	date_default_timezone_set('Asia/Kuala_Lumpur');
