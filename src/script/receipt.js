@@ -22,7 +22,9 @@ $(document).ready(() => {
             $("#date-placeholder").html(result.scheduled_movie_showing_date)
             $("#time-placeholder").html(result.scheduled_movie_start_time)
             $("#ticket-amount-placeholder").html(`Total: ${result.ticket_adult_num + result.ticket_child_elder_num + result.ticket_student_num} (Adult: ${result.ticket_adult_num} Child/Elder: ${result.ticket_child_elder_num} Student: ${result.ticket_student_num})`)
-            $("#ticket-token").html(result.ticket_token)
+            console.log(`localhost/src/api/payment.php?action=use-ticket&token=${result.ticket_token}`)
+
+            new QRCode(document.getElementById("ticket-token"), `localhost/src/api/payment.php?action=use-ticket&token=${result.ticket_token}`)
         }
     }
 

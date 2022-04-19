@@ -11,7 +11,7 @@ $(document).ready(() => {
 
         html() {
             return `
-                <a class="card m-3 text-decoration-none text-dark" href="/src/seat-selecting.html?scheduled-movie-id=${this.id}">
+                <a class="card m-3 text-decoration-none text-light" href="/src/seat-selecting.html?scheduled-movie-id=${this.id}">
                   <div class="card-body">
                     <p>Date: ${this.date}</p>
                     <p>Time: ${this.time}</p>
@@ -32,6 +32,9 @@ $(document).ready(() => {
                 success: (response) => {
                     print(response)
                 },
+                error: () => {
+                    alert("Please login first")
+                }
             }
         );
 

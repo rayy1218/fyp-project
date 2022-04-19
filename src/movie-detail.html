@@ -13,9 +13,18 @@
   <script src="./script/movie-detail.js"></script>
   <script src="/src/script/prototype-tool.js"></script>
   <script src="/src/script/header.js"></script>
+
+  <style>
+    .img-thumbnail {
+      width: 300px;
+      height: auto;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/src/style/global.css" />
 </head>
 <body>
-<header class="position-sticky sticky-top bg-white">
+<header class="position-sticky sticky-top">
   <div class="container d-none d-md-block">
     <div class="d-flex flex-wrap justify-content-center">
       <div class="d-flex align-items-center"><a href="/index.html" class="fw-bold p-0 btn">Website Title</a></div>
@@ -55,13 +64,13 @@
 <div class="container mt-3 content">
   <div class="row mb-2">
     <div class="col-auto d-flex align-items-center"><button class="btn btn-primary" onClick="history.back()">Back</button></div>
-    <div class="col fs-3 fw-bold">Movie Name</div>
+    <div class="col fs-3 fw-bold" id="title-placeholder">Movie Name</div>
   </div>
   <div class="row">
-    <div class="col-lg-6 mb-2">
-      <img style="object-fit: contain; width: 100%; height: auto;" src="../resource/no-image.png" alt="movie thumbnail" id="thumbnail-placeholder"/>
+    <div class="col-lg-auto mb-2">
+      <img style="object-fit: contain;" src="../resource/no-image.png" alt="movie thumbnail" id="thumbnail-placeholder" class="img-thumbnail" />
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg">
       <div class="fw-bold mb-2">Details</div>
       <div class="row mb-2">
         <div class="col-4">Duration</div>

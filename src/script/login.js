@@ -19,6 +19,8 @@ $(document).ready(() => {
         );
 
         function respond(result) {
+            $("#login-btn").attr("disabled", false)
+            $("#login-btn").html("Login")
             switch (result.status) {
                 case "success":
                     $.ajax(
@@ -47,6 +49,10 @@ $(document).ready(() => {
                 case "password-failure":
                     $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Password failure</div>')
                     break
+
+                case "not-verify":
+                    $("#error-placeholder").html('<div class="alert alert-warning" role="alert">Account not verify. A new verify mail was send.</div>')
+                    break
             }
         }
     }
@@ -72,9 +78,11 @@ $(document).ready(() => {
         );
 
         function respond(result) {
-            console.log(result.status)
+            $("#register-btn").attr("disabled", false)
+            $("#register-btn").html("Register")
             switch (result.status) {
                 case "success":
+                    alert("Please verify the account in mailbox before login")
                     window.location.href = "login.html"
                     break;
 
@@ -151,12 +159,22 @@ $(document).ready(() => {
         }
     }
 
+    const spinner = `
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+    `
+
     $("#register-btn").click(() => {
-       register()
+        $("#register-btn").html(spinner)
+        $("#register-btn").attr("disabled", true)
+        register()
     })
 
     $("#login-btn").click(() => {
-       login()
+        $("#login-btn").html(spinner)
+        $("#login-btn").attr("disabled", true)
+        login()
     })
 
     $("#send-request-btn").click(() => {

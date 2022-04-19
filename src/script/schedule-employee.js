@@ -162,6 +162,14 @@ $(document).ready(() => {
     }
 
     function editScheduledMovie() {
+        const schedule_date = $("#schedule-date").val(), schedule_time = $("#schedule-time").val()
+        const schedule = new Date(schedule_date + " " + schedule_time), current = new Date()
+
+        if (schedule < current) {
+            alert("Input datetime is behind current date. Discarded")
+            return
+        }
+
         $.ajax(
             "./api/schedule-employee.php",
             {
@@ -170,8 +178,8 @@ $(document).ready(() => {
                     action: "edit-scheduled-movie",
                     "scheduled-movie-id": $(".scheduled-movie-id-field").val(),
                     "theater-id": $("#schedule-theater option:selected").val(),
-                    "scheduled-movie-showing-date": $("#schedule-date").val(),
-                    "scheduled-movie-start-time": $("#schedule-time").val()
+                    "scheduled-movie-showing-date": schedule_date,
+                    "scheduled-movie-start-time": schedule_time
                 },
                 success: () => {
                     let edit_modal = new bootstrap.Modal(document.getElementById('edit-scheduled-movie-modal'))

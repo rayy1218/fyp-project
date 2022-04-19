@@ -226,19 +226,27 @@ $(document).ready(() => {
     }
 
     function addMovieToSchedule() {
-        $.ajax(
-            "./api/schedule-employee.php",
-            {
-                type: "POST",
-                data: {
-                    action: "add-scheduled-movie",
-                    "theater-id": $("#schedule-theater").val(),
-                    "date": $("#schedule-date").val(),
-                    "time": $("#schedule-time").val(),
-                    "movie-id": $(".movie-id-field").val(),
+        const schedule_date = $("#schedule-date").val(), schedule_time = $("#schedule-time").val()
+        const schedule = new Date(schedule_date + " " + schedule_time), current = new Date()
+
+        if (schedule < current) {
+            alert("Input datetime is behind current date. Discarded")
+        }
+        else {
+            $.ajax(
+                "./api/schedule-employee.php",
+                {
+                    type: "POST",
+                    data: {
+                        action: "add-scheduled-movie",
+                        "theater-id": $("#schedule-theater").val(),
+                        "date": $("#schedule-date").val(),
+                        "time": $("#schedule-time").val(),
+                        "movie-id": $(".movie-id-field").val(),
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     getCinemaList()

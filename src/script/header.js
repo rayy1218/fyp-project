@@ -53,7 +53,6 @@ $(document).ready(() => {
             }
 
             $(".logout-btn").click(() => {
-                console.log("test");
                 logout();
             });
         }

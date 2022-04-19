@@ -13,10 +13,19 @@
   <script src="src/script/homepage.js"></script>
   <script src="src/script/prototype-tool.js"></script>
   <script src="/src/script/header.js"></script>
+
+  <style>
+    .img-thumbnail {
+      width: 300px;
+      height: auto;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/src/style/global.css" />
 </head>
 <body>
 
-<header class="position-sticky sticky-top bg-white">
+<header class="position-sticky sticky-top">
   <div class="container d-none d-md-block">
     <div class="d-flex flex-wrap justify-content-center">
       <div class="d-flex align-items-center"><a href="/index.html" class="fw-bold p-0 btn">Website Title</a></div>
@@ -33,10 +42,10 @@
   <div class="container-fluid d-md-none">
     <div class="row">
       <div class="col d-flex align-content-center">
-        <p class="my-auto"><a class="text-decoration-none text-dark fs-5 fw-bold" href="/index.html">Website Title</a></p>
+        <p class="my-auto"><a class="text-decoration-none text-light fs-5 fw-bold" href="/index.html">Website Title</a></p>
       </div>
       <div class="col-auto">
-        <button class="navbar-toggler navbar-light text-end" type="button" data-bs-toggle="collapse" data-bs-target="#header-collapse" aria-controls="header-collapse" aria-expanded="false" aria-label="Toggle navigation collapse">
+        <button class="navbar-toggler navbar-dark text-end" type="button" data-bs-toggle="collapse" data-bs-target="#header-collapse" aria-controls="header-collapse" aria-expanded="false" aria-label="Toggle navigation collapse">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
@@ -54,26 +63,7 @@
 </header>
 
 <div class="container mt-3 content">
-  <div id="promotion-carousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#promotion-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#promotion-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#promotion-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner" id="promoted-movie-placeholder">
-
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#promotion-carousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#promotion-carousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <ul class="nav nav-tabs mt-3" id="movie-tab" role="tablist">
+  <ul class="nav nav-tabs mt-3 border-0" id="movie-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="movie-today-tab" data-bs-toggle="tab" data-bs-target="#movie-today" type="button" role="tab" aria-controls="movie-today" aria-selected="true">Movie Today</button>
     </li>
@@ -81,7 +71,7 @@
       <button class="nav-link" id="recent-movie-tab" data-bs-toggle="tab" data-bs-target="#recent-movie" type="button" role="tab" aria-controls="recent-movie" aria-selected="false">Recent Movie</button>
     </li>
   </ul>
-  <div class="tab-content" id="movie-tab-content">
+  <div class="tab-content border-0" id="movie-tab-content">
     <div class="tab-pane fade show active p-2 border border-top-0" id="movie-today" role="tabpanel">
       <h4>Movie Today</h4>
       <div id="movie-today-carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">

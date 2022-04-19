@@ -24,7 +24,7 @@ switch ($action) {
         $statement = mysqli_prepare($conn,"
             SELECT movie_id, movie_title, movie_thumbnail FROM Scheduled_Movie
             JOIN Movie USING (movie_id)
-            WHERE scheduled_movie_showing_date = ? LIMIT 9
+            WHERE scheduled_movie_showing_date = ? GROUP BY movie_id LIMIT 9
         ");
         date_default_timezone_set('Asia/Kuala_Lumpur');
         $date = date("y-m-d");

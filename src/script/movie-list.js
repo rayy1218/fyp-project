@@ -54,12 +54,14 @@ $(document).ready(() => {
         for (let row of result) {
             append += `
                 <div class="card m-2">
-                  <img src="${row.movie_thumbnail}" class="card-img-top" alt="movie-thumbnail"/>
-                  <div class="card-body">
-                    <h6 class="card-title">${row.movie_title}</h6>
-                    <div class="row">
-                      <a href="./movie-detail.html?movie-id=${row.movie_id}" class="btn btn-outline-primary col">Detail</a>
-                      <a href="./ticket-purchase.html?movie-id=${row.movie_id}" class="btn btn-outline-secondary col">Book</a>
+                  <img src="${row.movie_thumbnail}" class="card-img-top img-thumbnail m-auto p-0 m-3" alt="movie-thumbnail"/>
+                  <div class="card-body d-flex align-items-end justify-content-center">
+                    <div class="w-100">
+                      <h6 class="card-title text-center text-light">${row.movie_title}</h6>
+                      <div class="row m-auto">
+                        <div class="col-6"><a href="/src/movie-detail.html?movie-id=${row.movie_id}" class="btn btn-outline-light w-100">Detail</a></div>
+                        <div class="col-6"><a href="/src/ticket-purchase.html?movie-id=${row.movie_id}" class="btn btn-outline-light w-100">Book</a></div>
+                      </div>
                     </div>
                   </div>
                 </div>
