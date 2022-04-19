@@ -1,0 +1,45 @@
+:root {
+    --primary: #DCD6F7;
+    --secondary: #424874;
+    --text-light: white;
+    --text-dark: black;
+    --panel: #A6B1E1;
+}
+
+header {
+    background-color: var(--secondary)
+}
+
+header .btn {
+    color: var(--text-light);
+}
+
+header .btn:hover {
+    color: var(--primary);
+}
+
+body {
+    background-color: var(--primary);
+}
+
+.nav-item {
+    background: var(--primary);
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--panel);
+}
+
+.tab-content, .dashboard-content {
+    background-color: var(--panel);
+}
+
+#login-form, #register-form, .card{
+    background-color: var(--secondary);
+    color: var(--text-light);
+}
+
+.card p {
+    color: var(--text-light);
+}
+
