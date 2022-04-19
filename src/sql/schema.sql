@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Member (
     member_phone VARCHAR(30) NOT NULL,
     member_birthday DATE,
     member_reset_password_token VARCHAR(16),
+    member_verify_token VARCHAR(16),
     PRIMARY KEY (member_id),
     UNIQUE (member_id)
 );

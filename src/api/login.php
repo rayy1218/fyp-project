@@ -2,6 +2,27 @@
 include "connection.php";
 include "crud.php";
 include "email.php";
+include "global.php";
+
+function send_reset_mail($email, $token) {
+    $body = "
+        <p>You have request reset password on our website.</p>
+        <p>Please preceed the reset password on</p> 
+        <p>" . DOMAIN . "/src/reset-password.html?token=" . $token . "</p>
+        <p>If you didn't request reset password, please do ignore this mail.</p>
+                ";
+    email($email, "Forget Password", $body);
+}
+
+function send_verify_mail($email, $token) {
+    $body = "
+        <p>You have register an account in our website on this E-Mail.</p>
+        <p>Please verify your account by clicking the link below</p>
+        <p><a>" . DOMAIN . "/src/api/login.php?action=verify&token=" . $token . "</a></p>
+        <p>If you didn't register the account, please do contact us.</p>
+    ";
+    email($email, "Register", $body);
+}
 
 $action = 0;
 if (isset($_POST["action"])) {
@@ -13,7 +34,7 @@ else if (isset($_GET["action"])) {
 
 switch ($action) {
     case "login":
-        $statement = mysqli_prepare($conn, "SELECT member_username, member_password FROM Member WHERE member_username = ?");
+        $statement = mysqli_prepare($conn, "SELECT member_username, member_password, member_verify_token, member_email FROM Member WHERE member_username = ?");
         mysqli_stmt_bind_param($statement, "s", $_POST["username"]);
         $result = readFirst($statement, true);
 
@@ -24,7 +45,14 @@ switch ($action) {
         else {
             $row = mysqli_fetch_assoc($result);
 
-            if ($row["member_password"] != $_POST["password"]) {
+            if (isset($row["member_verify_token"])) {
+                $status = "not-verify";
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, DOMAIN . "/src/api/login.php?action=send-verify-mail&email=" . $row["member_email"]);
+                curl_exec($ch);
+            }
+            else if ($row["member_password"] != $_POST["password"]) {
                 $status = "password-failure";
             }
             else {
@@ -49,10 +77,6 @@ switch ($action) {
         if ($_POST["password"] != $_POST["re-password"]) {
             $status = "re-password-failure";
         }
-        //TODO: check for forbidden character for status = "password-format-error"
-        //else if () {
-        //
-        //}
         else {
             $statement = mysqli_prepare($conn, "SELECT member_id FROM Member WHERE member_username = ?");
             mysqli_stmt_bind_param($statement, "s", $_POST["username"]);
@@ -62,23 +86,23 @@ switch ($action) {
                 $status = "username-failure";
             }
             else {
+                $token = "";
+                $char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                for ($i = 0; $i < 16; $i += 1) {
+                    $token .= $char[rand(0, strlen($char) - 1)];
+                }
+
                 $statement = mysqli_prepare($conn,
                     "
-                        INSERT INTO Member(member_username, member_password, member_email, member_phone)
-                        VALUES (?, ? , ?, ?);
+                        INSERT INTO Member(member_username, member_password, member_email, member_phone, member_verify_token)
+                        VALUES (?, ?, ?, ?, ?);
                 ");
-                mysqli_stmt_bind_param($statement, "ssss", $_POST["username"], $_POST["password"], $_POST["email"], $_POST["phone-num"]);
+                mysqli_stmt_bind_param($statement, "sssss", $_POST["username"], $_POST["password"], $_POST["email"], $_POST["phone-num"], $token);
                 set($statement);
 
                 $status = "success";
 
-                $token = "";
-
-                $body = "
-                    <p>You have register an account in our website on this E-Mail.</p>
-                    <p>If you didn't register the account, please do contact us.</p>
-                ";
-                email($_POST["email"], "Register", $body);
+                send_verify_mail($_POST["email"], $token);
             }
         }
 
@@ -156,13 +180,8 @@ switch ($action) {
 
             update($statement);
 
-            $body = "
-                    <p>You have request reset password on our website.</p>
-                    <p>Please preceed the reset password on</p> 
-                    <p>www.example.com/src/reset-password.html?token=" . $token . "</p>
-                    <p>If you didn't request reset password, please do ignore this mail.</p>
-                ";
-            email($email, "Forget Password", $body);
+            send_reset_mail($email, $token);
+
             $ret->status = "success";
         }
         else {
@@ -170,6 +189,7 @@ switch ($action) {
         }
         header("Content-Type: application/json");
         echo json_encode($ret);
+        break;
 
     case "reset-password":
         $statement = mysqli_prepare($conn, "SELECT member_id FROM Member WHERE member_reset_password_token = ?");
@@ -192,4 +212,48 @@ switch ($action) {
 
         header("Content-Type: application/json");
         echo json_encode($ret);
+        break;
+
+    case "send-verify-mail":
+        $token = "";
+        $char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for ($i = 0; $i < 16; $i += 1) {
+            $token .= $char[rand(0, strlen($char) - 1)];
+        }
+
+        $statement = mysqli_prepare($conn, "
+            UPDATE Member SET member_verify_token = ? WHERE member_email = ?
+        ");
+
+        mysqli_stmt_bind_param($statement, "ss", $token, $_GET["email"]);
+        update($statement);
+
+        send_verify_mail($_GET["email"], $token);
+        break;
+
+    case "verify":
+        $statement = mysqli_prepare($conn, "
+            SELECT member_id FROM Member WHERE member_verify_token = ?
+        ");
+
+        mysqli_stmt_bind_param($statement, "s", $_GET["token"]);
+        $result = read($statement, true);
+
+        if (mysqli_num_rows($result) > 0) {
+            $statement = mysqli_prepare($conn, "
+                UPDATE Member SET member_verify_token = null WHERE member_verify_token = ?
+            ");
+
+            mysqli_stmt_bind_param($statement, "s", $_GET["token"]);
+
+            update($statement);
+
+            echo "Verify Success, Please close this tab";
+        }
+        else {
+            header("HTTP/1.1 406 Not Acceptable");
+            echo "False token";
+        }
+        break;
 }
+
