@@ -36,7 +36,7 @@ switch ($_GET["action"]) {
         );
         mysqli_stmt_bind_param($statement, "ssisssss",
             $_GET["movie-title"], $_GET["movie-thumbnail"], $_GET["movie-duration"], $_GET["movie-rating"],
-            $_GET["movie-genre"], $_GET["movie-language"], $_GET["movie-censor-rating"], $_GET["movie-description"]
+            $_GET["movie-genre"], $_GET["movie-language"], $_GET["movie-censorship-rating"], $_GET["movie-description"]
         );
         set($statement);
         break;
@@ -51,7 +51,7 @@ switch ($_GET["action"]) {
         );
         mysqli_stmt_bind_param($statement, "ssisssssi",
             $_GET["movie-title"], $_GET["movie-thumbnail"], $_GET["movie-duration"], $_GET["movie-rating"],
-            $_GET["movie-genre"], $_GET["movie-language"], $_GET["movie-censor-rating"], $_GET["movie-description"],
+            $_GET["movie-genre"], $_GET["movie-language"], $_GET["movie-censorship-rating"], $_GET["movie-description"],
             $_GET["movie-id"]
         );
         update($statement);

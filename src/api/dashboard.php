@@ -10,7 +10,7 @@ switch ($_GET["action"]) {
             JOIN Scheduled_Movie USING (scheduled_movie_id)
             JOIN Member USING (member_id)
             JOIN Movie USING (movie_id)
-            WHERE member_id = ? ORDER BY scheduled_movie_showing_date DESC LIMIT 9;
+            WHERE member_id = ? AND ticket_status = 'watched' ORDER BY scheduled_movie_showing_date DESC LIMIT 9;
 		");
 
         mysqli_stmt_bind_param($statement,"i",$member_id);
@@ -23,11 +23,11 @@ switch ($_GET["action"]) {
             JOIN Scheduled_Movie USING (scheduled_movie_id)
             JOIN Member USING (member_id)
             JOIN Movie USING (movie_id)
-            WHERE member_id = ? AND ticket_status = 'paid' OR ticket_status = 'unpaid' 
+            WHERE member_id = ? AND (ticket_status = 'paid' OR ticket_status = 'unpaid') 
             AND scheduled_movie_showing_date >= ? ORDER BY ticket_made_date DESC LIMIT 9;
 		");
 		date_default_timezone_set('Asia/Kuala_Lumpur');
-		$date = date("y-m-d");
+		$date = date("Y-m-d");
 	
 		mysqli_stmt_bind_param($statement,"is",$member_id, $date);
 		read($statement);

@@ -112,16 +112,17 @@ switch($_POST["action"]) {
         $row = mysqli_fetch_assoc($result);
 
         if (isset($row["employee_id"])) {
-            $statement = mysqli_prepare($conn, "
-                UPDATE Scheduled_Movie SET theater_id = ?, scheduled_movie_showing_date = ?, scheduled_movie_start_time = ? WHERE scheduled_movie_id = ?
-            ");
 
-            mysqli_stmt_bind_param($statement, "issi",
-                $_POST["theater-id"], $_POST["scheduled-movie-showing-date"],
-                $_POST["scheduled-movie-start-time"], $_POST["scheduled-movie-id"]
-            );
+                $statement = mysqli_prepare($conn, "
+                    UPDATE Scheduled_Movie SET theater_id = ?, scheduled_movie_showing_date = ?, scheduled_movie_start_time = ? WHERE scheduled_movie_id = ?
+                ");
 
-            update($statement);
+                mysqli_stmt_bind_param($statement, "issi",
+                    $_POST["theater-id"], $_POST["scheduled-movie-showing-date"],
+                    $_POST["scheduled-movie-start-time"], $_POST["scheduled-movie-id"]
+                );
+
+                update($statement);
         }
         else {
             header("HTTP/1.1 403 Forbidden");

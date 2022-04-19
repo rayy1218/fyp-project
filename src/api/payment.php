@@ -113,7 +113,7 @@ switch ($action) {
         break;
 
     case "pay-ticket":
-        if ($_POST["token"] == $payment_token) {
+        if ($_POST["token"] == PAYMENT_TOKEN) {
             $token = "";
 
             $char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -137,13 +137,15 @@ switch ($action) {
     case "use-ticket":
         $statement = mysqli_prepare($conn, "SELECT ticket_id, ticket_status FROM Ticket WHERE ticket_token = ?");
 
-        mysqli_stmt_bind_param($statement, "s", $_POST["token"]);
+        mysqli_stmt_bind_param($statement, "s", $_GET["token"]);
         $result = read($statement, true);
         $row = mysqli_fetch_assoc($result);
 
         if ($row["ticket_status"] == "paid") {
             $statement = mysqli_prepare($conn, "UPDATE Ticket SET ticket_status = 'watched' WHERE ticket_id = ?");
-            mysqli_stmt_bind_param($statement, "s", $row["ticket_id"]);
+            mysqli_stmt_bind_param($statement, "i", $row["ticket_id"]);
+
+            update($statement);
         }
 
         $ret = new stdClass();
