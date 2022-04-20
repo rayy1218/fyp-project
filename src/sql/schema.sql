@@ -63,17 +63,6 @@ CREATE TABLE IF NOT EXISTS Scheduled_Movie (
     FOREIGN KEY (employee_id) REFERENCES Employee(employee_id)
 );
 
-CREATE TABLE IF NOT EXISTS Seat (
-    seat_id INT NOT NULL AUTO_INCREMENT,
-    scheduled_movie_id INT NOT NULL,
-    ticket_id INT,
-    seat_row INT NOT NULL,
-    seat_column INT NOT NULL,
-    PRIMARY KEY (seat_id),
-    FOREIGN KEY (scheduled_movie_id) REFERENCES Scheduled_Movie(scheduled_movie_id),
-    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id)
-);
-
 CREATE TABLE IF NOT EXISTS Ticket (
     ticket_id INT NOT NULL AUTO_INCREMENT,
     scheduled_movie_id INT NOT NULL,
@@ -91,3 +80,13 @@ CREATE TABLE IF NOT EXISTS Ticket (
     FOREIGN KEY (member_id) REFERENCES Member(member_id)
 );
 
+CREATE TABLE IF NOT EXISTS Seat (
+    seat_id INT NOT NULL AUTO_INCREMENT,
+    scheduled_movie_id INT NOT NULL,
+    ticket_id INT,
+    seat_row INT NOT NULL,
+    seat_column INT NOT NULL,
+    PRIMARY KEY (seat_id),
+    FOREIGN KEY (scheduled_movie_id) REFERENCES Scheduled_Movie(scheduled_movie_id),
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id)
+);
